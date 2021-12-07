@@ -24,9 +24,8 @@ class UpdateProfilerLang extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->profiler_lang;
         return [
-            'language' => 'required|string|max:50|min:2' . $id,
+            'language' => 'required|string|max:50|min:2' . $this->profiler_lang,
             'profiler_infos_id' => ['required', 'int', new ProfilerInfoIDRule(),],
             'language_level' => 'required|int|max:10|min:1',
         ];

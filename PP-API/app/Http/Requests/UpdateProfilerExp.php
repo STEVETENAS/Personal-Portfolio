@@ -24,9 +24,8 @@ class UpdateProfilerExp extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->profiler_exp;
         return [
-            'job_title' => 'required|string|max:50|min:2' . $id,
+            'job_title' => 'required|string|max:50|min:2' . $this->profiler_exp,
             'company_name' => 'required|string|max:50|min:2',
             'company_website' => 'required|string|max:200|min:2',
             'job_start_date' => 'required',

@@ -25,7 +25,7 @@ class StoreProfilerProject extends FormRequest
     public function rules(): array
     {
         return [
-            'project_name' => 'required|string|max:50|min:2',
+            'project_title' => 'required|string|max:50|min:2',
             'profiler_infos_id' => ['required', 'int', new profilerInfoIDRule(),],
             'project_description' => 'required|int|max:300|min:2',
         ];

@@ -24,9 +24,8 @@ class UpdateProfilerProject extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->profiler_project;
         return [
-            'project_name' => 'required|string|max:50|min:2' . $id,
+            'project_title' => 'required|string|max:50|min:2' . $this->profiler_project,
             'profiler_infos_id' => ['required', 'int', new profilerInfoIDRule(),],
             'project_description' => 'required|int|max:300|min:2',
         ];

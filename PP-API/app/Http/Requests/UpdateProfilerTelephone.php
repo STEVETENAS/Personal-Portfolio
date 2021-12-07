@@ -24,9 +24,8 @@ class UpdateProfilerTelephone extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->profiler_telephone;
         return [
-            'profiler_phone_number' => 'required|string|max:25|min:2' . $id,
+            'profiler_phone_number' => 'required|string|max:25|min:2' . $this->profiler_telephone,
             'profiler_infos_id' => ['required', 'int', new profilerInfoIDRule(),],
             'phone_number_description' => 'required|string|max:300|min:2',
         ];

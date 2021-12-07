@@ -24,9 +24,8 @@ class UpdateProfilerSkill extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->profiler_skill;
         return [
-            'skill_title' => 'required|string|max:50|min:2' . $id,
+            'skill_title' => 'required|string|max:50|min:2' . $this->profiler_skil,
             'profiler_infos_id' => ['required', 'int', new profilerInfoIDRule(),],
             'skill_level' => 'required|int|max:100|min:1',
             'skill_description' => 'required|string|max:300|min:2',

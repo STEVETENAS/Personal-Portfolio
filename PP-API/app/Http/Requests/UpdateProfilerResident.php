@@ -25,7 +25,7 @@ class UpdateProfilerResident extends FormRequest
     public function rules(): array
     {
         return [
-            'place_of_residence' => 'required|string|max:50|min:2' . $this->profiler_resident->id,
+            'place_of_residence' => 'required|string|max:50|min:2' . $this->profiler_resident,
             'profiler_infos_id' => ['required', 'int', new profilerInfoIDRule(),],
             'city_of_residence' => 'required|string|max:50|min:2',
             'country_of_residence' => 'required|string|max:50|min:2',

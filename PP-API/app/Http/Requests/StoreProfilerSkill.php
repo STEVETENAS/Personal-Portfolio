@@ -22,7 +22,7 @@ class StoreProfilerSkill extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'skill_title' => 'required|string|max:50|min:2',

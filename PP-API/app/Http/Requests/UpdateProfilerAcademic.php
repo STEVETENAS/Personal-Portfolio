@@ -24,9 +24,8 @@ class UpdateProfilerAcademic extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->profiler_academic;
         return [
-            'diploma_title' => 'required|string|max:50|min:2' . $id,
+            'diploma_title' => 'required|string|max:50|min:2' . $this->profiler_academic,
             'profiler_infos_id' => ['required', 'int', new ProfilerInfoIDRule(),],
             'institution_attended' => 'required|string|max:50|min:2',
             'diploma_description' => 'required|string|max:300|min:5',

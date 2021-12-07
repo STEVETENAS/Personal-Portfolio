@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ProfilerInfoIdRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUser extends FormRequest
@@ -11,9 +12,9 @@ class StoreUser extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +22,13 @@ class StoreUser extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|min:3|max:50|unique:users',
+            'email' => 'required|string|min:8|max:50',
+            'password' => 'required|string|min:8|max:50',
+            'profiler_infos_id' => ['required|int', new ProfilerInfoIdRule()],
         ];
     }
 }

@@ -24,9 +24,8 @@ class UpdateProfilerMedical extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->profiler_medical;
         return [
-            'medical_status' => 'required|string|max:50|min:2' . $id,
+            'medical_status' => 'required|string|max:50|min:2' . $this->profiler_medical,
             'profiler_infos_id' => ['required', 'int', new ProfilerInfoIDRule(),],
             'medical_description' => 'required|int|max:300|min:2',
         ];

@@ -23,9 +23,8 @@ class UpdateProfilerInfo extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->profiler_info;
         return [
-            'first_name' => 'required|string|max:50|min:2' . $id,
+            'first_name' => 'required|string|max:50|min:2' . $this->profiler_info,
             'last_name' => 'required|string|max:50|min:2',
             'profession' => 'required|string|max:50|min:2',
             'gender' => 'required|string|max:10|min:4',
