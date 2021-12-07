@@ -26,6 +26,7 @@ class StoreProfilerProject extends FormRequest
     {
         return [
             'project_title' => 'required|string|max:50|min:2',
+            'project_link' => 'required|string|min:5',
             'profiler_infos_id' => ['required', 'int', new profilerInfoIDRule(),],
             'project_description' => 'required|int|max:300|min:2',
         ];

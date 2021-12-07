@@ -18,6 +18,7 @@ class ProfilerProjectResource extends JsonResource
         return [
             'id' => $this->id,
             'project_title' => $this->project_name,
+            'project_link' => $this->project_link,
             'project_description' => $this->project_description,
             'profiler_info' => profilerInfoResource::make($this->profilerInfos),
             'created_at' => $this->created_at,

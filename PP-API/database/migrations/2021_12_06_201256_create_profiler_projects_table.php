@@ -16,6 +16,7 @@ class CreateProfilerProjectsTable extends Migration
         Schema::create('profiler_projects', function (Blueprint $table) {
             $table->id();
             $table->mediumText('project_title');
+            $table->string('project_link');
             $table->Text('project_description');
             $table->foreignId('profiler_infos_id');
             $table->timestampTz('deleted_at')->nullable();

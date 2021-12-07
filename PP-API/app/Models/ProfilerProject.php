@@ -15,6 +15,7 @@ class ProfilerProject extends Model
 
     protected $fillable = [
         'project_title',
+        'project_link',
         'project_description',
         'profiler_infos_id',
     ];
