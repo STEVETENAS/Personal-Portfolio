@@ -30,17 +30,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResources([
-    'academic' => ProfilerAcademicController::class,
-    'contract' => ProfilerContractController::class,
-    'email' => ProfilerEmailController::class,
-    'exp' => ProfilerExpController::class,
-    'info' => ProfilerInfoController::class,
-    'ip' => ProfilerIpController::class,
-    'lang' => ProfilerLangController::class,
-    'medical' => ProfilerMedicalController::class,
-    'project' => ProfilerProjectController::class,
-    'resident' => ProfilerResidentController::class,
-    'skill' => ProfilerSkillController::class,
-    'telephone' => ProfilerTelephoneController::class,
-]);
+Route::group([
+    'middleware' => ['api', 'cors'],
+//    'prefix' => 'api',
+], function ($router) {
+    Route::apiResources([
+        'academic' => ProfilerAcademicController::class,
+        'contract' => ProfilerContractController::class,
+        'email' => ProfilerEmailController::class,
+        'exp' => ProfilerExpController::class,
+        'info' => ProfilerInfoController::class,
+        'ip' => ProfilerIpController::class,
+        'lang' => ProfilerLangController::class,
+        'medical' => ProfilerMedicalController::class,
+        'project' => ProfilerProjectController::class,
+        'resident' => ProfilerResidentController::class,
+        'skill' => ProfilerSkillController::class,
+        'telephone' => ProfilerTelephoneController::class,
+    ]);
+});

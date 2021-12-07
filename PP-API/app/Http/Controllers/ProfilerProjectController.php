@@ -92,7 +92,7 @@ class ProfilerProjectController extends Controller
     {
         $project = profilerProject::find($id);
         if ($project->delete()) {
-            return ['data' => $project->id];
+            return ['Deleted-data' => $project->id];
         }
         throw new Exception('Unexpected Error');
     }

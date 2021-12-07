@@ -92,7 +92,7 @@ class ProfilerResidentController extends Controller
     {
         $resident = profilerResident::find($id);
         if ($resident->delete()) {
-            return ['data' => $resident->id];
+            return ['Deleted-data' => $resident->id];
         }
         throw new Exception('Unexpected Error');
     }

@@ -92,7 +92,7 @@ class ProfilerSkillController extends Controller
     {
         $skill = profilerSkill::find($id);
         if ($skill->delete()) {
-            return ['data' => $skill->id];
+            return ['Deleted-data' => $skill->id];
         }
         throw new Exception('Unexpected Error');
     }

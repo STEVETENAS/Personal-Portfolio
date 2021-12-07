@@ -90,7 +90,7 @@ class ProfilerAcademicController extends Controller
     {
         $academic = profilerAcademic::find($id);
         if ($academic->delete()) {
-            return ['data' => $academic->id];
+            return ['Deleted-data' => $academic->id];
         }
         throw new Exception('Unexpected Error');
     }

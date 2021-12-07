@@ -92,7 +92,7 @@ class ProfilerContractController extends Controller
     {
         $contract = profilerContract::find($id);
         if ($contract->delete()) {
-            return ['data' => $contract->id];
+            return ['Deleted-data' => $contract->id];
         }
         throw new Exception('Unexpected Error');
     }

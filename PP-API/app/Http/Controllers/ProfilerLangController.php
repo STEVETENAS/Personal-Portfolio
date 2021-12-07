@@ -92,7 +92,7 @@ class ProfilerLangController extends Controller
     {
         $lang = profilerLang::find($id);
         if ($lang->delete()) {
-            return ['data' => $lang->id];
+            return ['Deleted-data' => $lang];
         }
         throw new Exception('Unexpected Error');
     }

@@ -92,7 +92,7 @@ class ProfilerTelephoneController extends Controller
     {
         $telephone = profilerTelephone::find($id);
         if ($telephone->delete()) {
-            return ['data' => $telephone->id];
+            return ['Deleted-data' => $telephone->id];
         }
         throw new Exception('Unexpected Error');
     }

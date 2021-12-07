@@ -92,7 +92,7 @@ class ProfilerIpController extends Controller
     {
         $ip = profilerIp::find($id);
         if ($ip->delete()) {
-            return ['data' => $ip->id];
+            return ['Deleted-data' => $ip->id];
         }
         throw new Exception('Unexpected Error');
     }

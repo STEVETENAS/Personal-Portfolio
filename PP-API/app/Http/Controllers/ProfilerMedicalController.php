@@ -92,7 +92,7 @@ class ProfilerMedicalController extends Controller
     {
         $medical = profilerMedical::find($id);
         if ($medical->delete()) {
-            return ['data' => $medical->id];
+            return ['Deleted-data' => $medical->id];
         }
         throw new Exception('Unexpected Error');
     }

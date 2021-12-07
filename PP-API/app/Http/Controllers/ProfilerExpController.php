@@ -92,7 +92,7 @@ class ProfilerExpController extends Controller
     {
         $exp = profilerExp::find($id);
         if ($exp->delete()) {
-            return ['data' => $exp->id];
+            return ['Deleted-data' => $exp->id];
         }
         throw new Exception('Unexpected Error');
     }

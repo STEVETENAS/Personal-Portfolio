@@ -92,7 +92,7 @@ class ProfilerEmailController extends Controller
     {
         $email = profilerEmail::find($id);
         if ($email->delete()) {
-            return ['data' => $email->id];
+            return ['Deleted-data' => $email->id];
         }
         throw new Exception('Unexpected Error');
     }
