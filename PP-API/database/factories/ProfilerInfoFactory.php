@@ -24,8 +24,8 @@ class ProfilerInfoFactory extends Factory
             'place_of_origin' => $this->faker->city,
             'number_of_children' => $this->faker->randomNumber(1),
             'married' => $this->faker->boolean,
-            'profiler_image' => $this->faker->image('public/storage/images/profile_image', 640, 480, null, false),
-            'background_image' => $this->faker->image('public/storage/images/bg_image', 640, 480, null, false),
+            'profiler_image' => $this->faker->image('public/storage/images/profile_images', 640, 480, null, false),
+            'background_image' => $this->faker->image('public/storage/images/bg_images', 640, 480, null, false),
         ];
     }
 }
