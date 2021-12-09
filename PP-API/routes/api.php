@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfilerProjectController;
 use App\Http\Controllers\ProfilerResidentController;
 use App\Http\Controllers\ProfilerSkillController;
 use App\Http\Controllers\ProfilerTelephoneController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,5 +48,6 @@ Route::group([
         'resident' => ProfilerResidentController::class,
         'skill' => ProfilerSkillController::class,
         'telephone' => ProfilerTelephoneController::class,
+        'user' => UserController::class,
     ]);
 });

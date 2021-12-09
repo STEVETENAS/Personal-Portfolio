@@ -17,6 +17,7 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'name' => $this->name,
             'profiler_info' => profilerInfoResource::make($this->profilerInfos),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
