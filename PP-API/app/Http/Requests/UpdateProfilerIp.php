@@ -28,7 +28,7 @@ class UpdateProfilerIp extends FormRequest
             'ip_name' => 'required|string|max:50|min:2' . $this->profiler_ip,
             'profiler_infos_id' => ['required', 'int', new ProfilerInfoIDRule(),],
             'ip_description' => 'required|string|max:300|min:5',
-            'ip_img' => 'required|binary',
+            'ip_img' => 'required|string',
         ];
     }
 }

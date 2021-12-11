@@ -40,7 +40,28 @@ class ProfilerInfoController extends Controller
      */
     public function store(StoreprofilerInfo $request): profilerInfoResource
     {
-        $info = profilerInfo::create($request->all());
+        $input = $request->all();
+
+        if ($request->hasFile('profiler_image')) {
+            $profilerImageName = $request->file('profiler_image')->getClientOriginalName();
+            [$width, $height] = getimagesize($request->file('profiler_image'));
+            $date = date('Y-m-d');
+            $id = uniqid('', true);
+            $profilerImagePath = "images/profiler_images/{$date}-{$profilerImageName}-{$id}-{$width}-{$height}";
+            $input['profiler_image'] = $request->file('profiler_image')->store($profilerImagePath);
+        }
+
+        if ($request->hasFile('background_image')) {
+            $bgImageName = $request->file('background_image')->getClientOriginalName();
+            [$width, $height] = getimagesize($request->file('background_image'));
+            $date = date('Y-m-d');
+            $id = uniqid('', true);
+            $bgImagePath = "images/bg_images/{$date}-{$bgImageName}-{$id}-{$width}-{$height}";
+            $input['background_image'] = $request->file('background_image')->store($bgImagePath);
+        }
+
+
+        $info = profilerInfo::create($input);
         if ($info) {
             return new profilerInfoResource($info);
         }
@@ -72,10 +93,29 @@ class ProfilerInfoController extends Controller
      */
     public function update(UpdateprofilerInfo $request, $id): profilerInfoResource
     {
+        $input = $request->all();
+        if ($request->hasFile('profiler_image')) {
+            $profilerImageName = $request->file('profiler_image')->getClientOriginalName();
+            [$width, $height] = getimagesize($request->file('profiler_image'));
+            $date = date('Y-m-d');
+            $id = uniqid('', true);
+            $profilerImagePath = "images/profiler_images/{$date}-{$profilerImageName}-{$id}-{$width}-{$height}";
+            $input['profiler_image'] = $request->file('profiler_image')->store($profilerImagePath);
+        }
+
+        if ($request->hasFile('background_image')) {
+            $bgImageName = $request->file('background_image')->getClientOriginalName();
+            [$width, $height] = getimagesize($request->file('background_image'));
+            $date = date('Y-m-d');
+            $id = uniqid('', true);
+            $bgImagePath = "images/bg_images/{$date}-{$bgImageName}-{$id}-{$width}-{$height}";
+            $input['background_image'] = $request->file('background_image')->store($bgImagePath);
+        }
+
         $info = profilerInfo::find($id);
         if ($info->update($request->all())) {
             $info->flash();
-            return new profilerInfoResource($info);
+            return new profilerInfoResource($input);
         }
         throw new Exception('Unexpected Error');
     }

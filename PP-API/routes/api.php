@@ -51,3 +51,5 @@ Route::group([
         'user' => UserController::class,
     ]);
 });
+
+Route::get("*", [ProfilerResidentController::class, 'index']);

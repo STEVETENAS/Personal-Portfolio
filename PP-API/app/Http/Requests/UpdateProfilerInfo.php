@@ -36,8 +36,8 @@ class UpdateProfilerInfo extends FormRequest
             'job_description' => 'required|string|max:300|min:5',
             'number_of_children' => 'required|int',
             'married' => 'required|bool',
-            'profiler_image' => 'required|binary',
-            'background_image' => 'required|binary',
+            'profiler_image' => 'required|string',
+            'background_image' => 'required|string',
         ];
     }
 }

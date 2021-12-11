@@ -31,13 +31,10 @@ class StoreProfilerInfo extends FormRequest
             'place_of_birth' => 'required|string|max:30|min:2',
             'place_of_origin' => 'required|string|max:30|min:2',
             'date_of_birth' => 'required',
-            'job_end_date' => 'required',
-            'profiler_infos_id' => 'required',
-            'job_description' => 'required|string|max:300|min:5',
             'number_of_children' => 'required|int',
             'married' => 'required|bool',
-            'profiler_image' => 'required|binary',
-            'background_image' => 'required|binary',
+            'profiler_image' => 'required|file',
+            'background_image' => 'required|file',
         ];
     }
 }

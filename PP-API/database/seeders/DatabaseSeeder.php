@@ -26,18 +26,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        ProfilerInfo::factory(1000)->create();
+        ProfilerInfo::factory(10)->create();
         User::factory(10)->create();
-        ProfilerAcademic::factory(50)->create();
-        ProfilerContract::factory(100)->create();
-        ProfilerEmail::factory(50)->create();
-        ProfilerExp::factory(10000)->create();
-        ProfilerIp::factory(500)->create();
+        ProfilerAcademic::factory(10)->create();
+        ProfilerContract::factory(10)->create();
+        ProfilerEmail::factory(10)->create();
+        ProfilerExp::factory(10)->create();
+        ProfilerIp::factory(5)->create();
         ProfilerLang::factory(2)->create();
         ProfilerMedical::factory(10)->create();
-        ProfilerProject::factory(1000)->create();
+        ProfilerProject::factory(10)->create();
         ProfilerResident::factory(10)->create();
-        ProfilerSkill::factory(2000)->create();
+        ProfilerSkill::factory(20)->create();
         ProfilerTelephone::factory(10)->create();
     }
 }

@@ -14,6 +14,8 @@ class ProfilerInfoFactory extends Factory
     public function definition(): array
     {
         $gender = $this->faker->randomElement(['male', 'female']);
+        $profile_images = glob('public/storage/images/profile_images' . '/*.*');
+        $bg_images = glob('public/storage/images/bg_images' . '/*.*');
         return [
             'first_name' => $this->faker->firstName($gender),
             'last_name' => $this->faker->lastName,
@@ -24,8 +26,8 @@ class ProfilerInfoFactory extends Factory
             'place_of_origin' => $this->faker->city,
             'number_of_children' => $this->faker->randomNumber(1),
             'married' => $this->faker->boolean,
-            'profiler_image' => $this->faker->image('public/storage/images/profile_images', 640, 480, null, false),
-            'background_image' => $this->faker->image('public/storage/images/bg_images', 640, 480, null, false),
+            'profiler_image' => $this->faker->randomElement($profile_images),
+            'background_image' => $this->faker->randomElement($bg_images),
         ];
     }
 }

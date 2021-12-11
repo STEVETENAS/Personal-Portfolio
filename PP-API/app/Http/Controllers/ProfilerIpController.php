@@ -40,7 +40,18 @@ class ProfilerIpController extends Controller
      */
     public function store(StoreprofilerIp $request): profilerIpResource
     {
-        $ip = profilerIp::create($request->all());
+        $input = $request->all();
+
+        if ($request->hasFile('ip_img')) {
+            $ipImageName = $request->file('ip_img')->getClientOriginalName();
+            [$width, $height] = getimagesize($request->file('ip_img'));
+            $date = date('Y-m-d');
+            $id = uniqid('', true);
+            $ipImagePath = "images/ips_images/{$date}-{$ipImageName}-{$id}-{$width}-{$height}";
+            $input['ip_img'] = $request->file('ip_img')->store($ipImagePath);
+        }
+
+        $ip = profilerIp::create($input);
         if ($ip) {
             return new profilerIpResource($ip);
         }
@@ -72,7 +83,18 @@ class ProfilerIpController extends Controller
      */
     public function update(UpdateprofilerIp $request, $id): profilerIpResource
     {
-        $ip = profilerIp::find($id);
+        $input = $request->all();
+
+        if ($request->hasFile('ip_img')) {
+            $ipImageName = $request->file('ip_img')->getClientOriginalName();
+            [$width, $height] = getimagesize($request->file('ip_img'));
+            $date = date('Y-m-d');
+            $id = uniqid('', true);
+            $ipImagePath = "images/ips_images/{$date}-{$ipImageName}-{$id}-{$width}-{$height}";
+            $input['ip_img'] = $request->file('ip_img')->store($ipImagePath);
+        }
+
+        $ip = profilerIp::create($input);
         if ($ip->update($request->all())) {
             $ip->flash();
             return new profilerIpResource($ip);
