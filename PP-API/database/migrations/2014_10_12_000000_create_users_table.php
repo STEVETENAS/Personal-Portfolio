@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->foreignId('profiler_infos_id');
             $table->rememberToken();
-            $table->timestampTz('deleted_at')->nullable();
+            $table->softDeletes();
             $table->timestampsTz();
         });
     }

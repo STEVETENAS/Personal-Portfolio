@@ -19,7 +19,7 @@ class CreateProfilerProjectsTable extends Migration
             $table->string('project_link');
             $table->Text('project_description');
             $table->foreignId('profiler_infos_id');
-            $table->timestampTz('deleted_at')->nullable();
+            $table->softDeletes();
             $table->timestampsTz();
         });
     }

@@ -24,9 +24,9 @@ class CreateProfilerInfosTable extends Migration
             $table->string('place_of_origin')->default('west');
             $table->tinyInteger('number_of_children')->nullable();
             $table->boolean('married')->default(false);
-            $table->binary('profiler_image');
-            $table->binary('background_image');
-            $table->timestampTz('deleted_at')->nullable();
+            $table->string('profiler_image');
+            $table->string('background_image');
+            $table->softDeletes();
             $table->timestampsTz();
         });
     }
