@@ -23,12 +23,8 @@ class ProfilerSkillController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerSkill::query();
-        $size = $request->query('size');
-        $skills = $query->get();
-        if ($size) {
-            $skills = $query->paginate($size);
-        }
-        return profilerSkillResource::collection($skills);
+        $skillAttributes = (new profilerSkill)->attributesToArray();
+        return profilerSkillResource::collection(IndexFilter::filter($skillAttributes, $query, $request));
     }
 
     /**

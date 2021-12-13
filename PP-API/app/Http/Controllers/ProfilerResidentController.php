@@ -23,12 +23,8 @@ class ProfilerResidentController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerResident::query();
-        $size = $request->query('size');
-        $residents = $query->get();
-        if ($size) {
-            $residents = $query->paginate($size);
-        }
-        return profilerResidentResource::collection($residents);
+        $residentAttributes = (new profilerResident)->attributesToArray();
+        return profilerResidentResource::collection(IndexFilter::filter($residentAttributes, $query, $request));
     }
 
     /**

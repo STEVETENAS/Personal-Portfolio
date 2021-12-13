@@ -23,12 +23,8 @@ class ProfilerExpController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerExp::query();
-        $size = $request->query('size');
-        $exps = $query->get();
-        if ($size) {
-            $exps = $query->paginate($size);
-        }
-        return profilerExpResource::collection($exps);
+        $expAttributes = (new profilerExp)->attributesToArray();
+        return profilerExpResource::collection(IndexFilter::filter($expAttributes, $query, $request));
     }
 
     /**

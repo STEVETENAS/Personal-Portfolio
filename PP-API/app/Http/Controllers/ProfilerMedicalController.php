@@ -23,12 +23,8 @@ class ProfilerMedicalController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerMedical::query();
-        $size = $request->query('size');
-        $medicals = $query->get();
-        if ($size) {
-            $medicals = $query->paginate($size);
-        }
-        return profilerMedicalResource::collection($medicals);
+        $medicalAttributes = (new profilerMedical)->attributesToArray();
+        return profilerMedicalResource::collection(IndexFilter::filter($medicalAttributes, $query, $request));
     }
 
     /**

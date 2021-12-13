@@ -23,12 +23,8 @@ class ProfilerIpController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerIp::query();
-        $size = $request->query('size');
-        $ips = $query->get();
-        if ($size) {
-            $ips = $query->paginate($size);
-        }
-        return profilerIpResource::collection($ips);
+        $ipAttributes = (new ProfilerIp)->attributesToArray();
+        return profilerIpResource::collection(IndexFilter::filter($ipAttributes, $query, $request));
     }
 
     /**
@@ -119,3 +115,38 @@ class ProfilerIpController extends Controller
         throw new Exception('Unexpected Error');
     }
 }
+//$query = profilerIp::query();
+//$size = $request->query('size');
+//$ips = $query->get();
+//if ($request->query('id')) {
+//    $ips = profilerIp::find($request->query('id'));
+//}
+//if ($request->query('ip_name')) {
+//    $ips = $query
+//        ->where('ip_name', 'like','%'.$request->query('ip_name').'%')
+//        ->get();
+//}
+//if ($request->query('ip_description')) {
+//    $ips = $query
+//        ->where('ip_description', 'like','%'.$request->query('ip_description').'%')
+//        ->get();
+//}
+//if ($request->query('profiler_infos_id')) {
+//    $ips = $query
+//        ->where('profiler_infos_id', 'like',$request->query('profiler_infos_id'))
+//        ->get();
+//}
+//if ($request->query('created_at')) {
+//    $ips = $query
+//        ->where('created_at', 'like','%'.$request->query('created_at').'%')
+//        ->get();
+//}
+//if ($request->query('updated_at')) {
+//    $ips = $query
+//        ->where('updated_at', 'like','%'.$request->query('updated_at').'%')
+//        ->get();
+//}
+//if ($size) {
+//    $ips = $query->paginate($size);
+//}
+//return profilerIpResource::collection($ips);

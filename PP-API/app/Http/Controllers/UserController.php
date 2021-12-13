@@ -23,12 +23,8 @@ class UserController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = User::query();
-        $size = $request->query('size');
-        $user = $query->get();
-        if ($size) {
-            $user = $query->paginate($size);
-        }
-        return UserResource::collection($user);
+        $userAttributes = (new User)->attributesToArray();
+        return UserResource::collection(IndexFilter::filter($userAttributes, $query, $request));
     }
 
     /**

@@ -23,12 +23,8 @@ class ProfilerLangController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerLang::query();
-        $size = $request->query('size');
-        $langs = $query->get();
-        if ($size) {
-            $langs = $query->paginate($size);
-        }
-        return profilerLangResource::collection($langs);
+        $langAttributes = (new profilerLang)->attributesToArray();
+        return profilerLangResource::collection(IndexFilter::filter($langAttributes, $query, $request));
     }
 
     /**

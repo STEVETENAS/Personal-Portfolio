@@ -23,12 +23,8 @@ class ProfilerContractController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerContract::query();
-        $size = $request->query('size');
-        $contracts = $query->get();
-        if ($size) {
-            $contracts = $query->paginate($size);
-        }
-        return profilerContractResource::collection($contracts);
+        $contractAttributes = (new profilerContract)->attributesToArray();
+        return profilerContractResource::collection(IndexFilter::filter($contractAttributes, $query, $request));
     }
 
     /**
