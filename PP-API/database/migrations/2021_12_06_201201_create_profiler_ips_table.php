@@ -17,7 +17,7 @@ class CreateProfilerIpsTable extends Migration
             $table->id();
             $table->mediumText('ip_name');
             $table->mediumText('ip_description');
-            $table->string('ip_img');
+            $table->string('ip_img')->nullable();
             $table->foreignId('profiler_infos_id');
             $table->softDeletes();
             $table->timestampsTz();
