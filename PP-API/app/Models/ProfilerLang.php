@@ -13,6 +13,14 @@ class ProfilerLang extends Model
 
     protected $table = 'profiler_langs';
 
+    protected $attributes = [
+        'language',
+        'language_level',
+        'profiler_infos_id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'language',
         'language_level',

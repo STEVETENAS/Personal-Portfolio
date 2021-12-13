@@ -8,14 +8,15 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "8.0",
+        "php": "8.0.6",
+        "ext-json": "*",
+        "ext-pdo": "*",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "ext-pdo": "*",
-        "ext-json": "*",
+        "mehdi-fathi/eloquent-filter": "^2.5",
         "ext-mosquitto-php": "*"
     },
     "require-dev": {

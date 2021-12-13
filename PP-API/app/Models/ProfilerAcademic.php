@@ -13,6 +13,15 @@ class ProfilerAcademic extends Model
 
     protected $table = 'profiler_academics';
 
+    protected $attributes = [
+        'diploma_title',
+        'diploma_description',
+        'institution_attended',
+        'profiler_infos_id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'diploma_title',
         'diploma_description',

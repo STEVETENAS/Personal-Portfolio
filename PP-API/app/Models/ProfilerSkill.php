@@ -13,6 +13,15 @@ class ProfilerSkill extends Model
 
     protected $table = 'profiler_skills';
 
+    protected $attributes = [
+        'skill_title',
+        'skill_level',
+        'skill_description',
+        'profiler_infos_id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'skill_title',
         'skill_level',

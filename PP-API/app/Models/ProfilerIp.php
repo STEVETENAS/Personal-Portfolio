@@ -13,6 +13,14 @@ class ProfilerIp extends Model
 
     protected $table = 'profiler_ips';
 
+    protected $attributes = [
+        'ip_name',
+        'ip_description',
+        'profiler_infos_id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'ip_name',
         'ip_description',

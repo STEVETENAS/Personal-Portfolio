@@ -13,6 +13,14 @@ class ProfilerMedical extends Model
 
     protected $table = 'profiler_medicals';
 
+    protected $attributes = [
+        'medical_status',
+        'medical_description',
+        'profiler_infos_id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'medical_status',
         'medical_description',

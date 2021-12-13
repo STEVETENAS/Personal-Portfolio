@@ -13,6 +13,14 @@ class ProfilerContract extends Model
 
     protected $table = 'profiler_contracts';
 
+    protected $attributes = [
+        'contract_type',
+        'contract_description',
+        'profiler_infos_id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'contract_type',
         'contract_description',

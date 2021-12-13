@@ -13,6 +13,14 @@ class ProfilerEmail extends Model
 
     protected $table = 'profiler_emails';
 
+    protected $attributes = [
+        'profiler_email',
+        'email_description',
+        'profiler_infos_id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'profiler_email',
         'email_description',
