@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = User::query();
-        $userAttributes = (new User)->attributesToArray();
+        $userAttributes = (new User)->userAttributes();
         return UserResource::collection(IndexFilter::filter($userAttributes, $query, $request));
     }
 

@@ -23,7 +23,7 @@ class ProfilerInfoController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerInfo::query();
-        $infoAttributes = (new profilerInfo)->attributesToArray();
+        $infoAttributes = (new profilerInfo)->infoAttributes();
         return profilerInfoResource::collection(IndexFilter::filter($infoAttributes, $query, $request));
     }
 

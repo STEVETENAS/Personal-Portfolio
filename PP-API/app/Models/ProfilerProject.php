@@ -13,17 +13,6 @@ class ProfilerProject extends Model
 
     protected $table = 'profiler_projects';
 
-    protected $attributes = [
-        'project_title',
-        'project_link',
-        'project_description',
-        'profiler_infos_id',
-        'created_at',
-        'updated_at',
-        'started_on',
-        'finished_on',
-    ];
-
     protected $fillable = [
         'project_title',
         'project_link',
@@ -43,4 +32,19 @@ class ProfilerProject extends Model
     {
         return $this->belongsTo(profilerInfo::class);
     }
+
+    public function projectAttributes(): array
+    {
+        return [
+            'project_title',
+            'project_link',
+            'project_description',
+            'profiler_infos_id',
+            'created_at',
+            'updated_at',
+            'started_on',
+            'finished_on',
+        ];
+    }
+
 }

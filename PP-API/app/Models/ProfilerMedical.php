@@ -13,14 +13,6 @@ class ProfilerMedical extends Model
 
     protected $table = 'profiler_medicals';
 
-    protected $attributes = [
-        'medical_status',
-        'medical_description',
-        'profiler_infos_id',
-        'created_at',
-        'updated_at',
-    ];
-
     protected $fillable = [
         'medical_status',
         'medical_description',
@@ -37,4 +29,16 @@ class ProfilerMedical extends Model
     {
         return $this->belongsTo(profilerInfo::class);
     }
+
+    public function medicalAttributes(): array
+    {
+        return [
+            'medical_status',
+            'medical_description',
+            'profiler_infos_id',
+            'created_at',
+            'updated_at',
+        ];
+    }
+
 }

@@ -13,20 +13,6 @@ class ProfilerInfo extends Model
 
     protected $table = 'profiler_infos';
 
-    protected $attributes = [
-        'first_name',
-        'last_name',
-        'gender',
-        'place_of_birth',
-        'date_of_birth',
-        'profession',
-        'place_of_origin',
-        'number_of_children',
-        'married',
-        'created_at',
-        'updated_at',
-    ];
-
     protected $fillable = [
         'first_name',
         'last_name',
@@ -46,6 +32,23 @@ class ProfilerInfo extends Model
         'updated_at' => 'datetime:U',
         'deleted_at' => 'datetime:U',
     ];
+
+    public function infoAttributes(): array
+    {
+        return [
+            'first_name',
+            'last_name',
+            'gender',
+            'place_of_birth',
+            'date_of_birth',
+            'profession',
+            'place_of_origin',
+            'number_of_children',
+            'married',
+            'created_at',
+            'updated_at',
+        ];
+    }
 
     public function profilerAcademic(): HasMany
     {

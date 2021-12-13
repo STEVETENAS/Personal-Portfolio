@@ -13,14 +13,6 @@ class ProfilerLang extends Model
 
     protected $table = 'profiler_langs';
 
-    protected $attributes = [
-        'language',
-        'language_level',
-        'profiler_infos_id',
-        'created_at',
-        'updated_at',
-    ];
-
     protected $fillable = [
         'language',
         'language_level',
@@ -36,5 +28,16 @@ class ProfilerLang extends Model
     public function profilerInfos(): BelongsTo
     {
         return $this->belongsTo(profilerInfo::class);
+    }
+
+    public function langAttributes(): array
+    {
+        return [
+            'language',
+            'language_level',
+            'profiler_infos_id',
+            'created_at',
+            'updated_at',
+        ];
     }
 }

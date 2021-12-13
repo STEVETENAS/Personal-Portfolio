@@ -23,7 +23,7 @@ class ProfilerIpController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerIp::query();
-        $ipAttributes = (new ProfilerIp)->attributesToArray();
+        $ipAttributes = (new ProfilerIp)->ipAttributes();
         return profilerIpResource::collection(IndexFilter::filter($ipAttributes, $query, $request));
     }
 

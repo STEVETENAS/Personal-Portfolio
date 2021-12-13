@@ -13,14 +13,6 @@ class ProfilerTelephone extends Model
 
     protected $table = 'profiler_telephones';
 
-    protected $attributes = [
-        'profiler_phone_number',
-        'phone_number_description',
-        'profiler_infos_id',
-        'created_at',
-        'updated_at',
-    ];
-
     protected $fillable = [
         'profiler_phone_number',
         'phone_number_description',
@@ -36,5 +28,16 @@ class ProfilerTelephone extends Model
     public function profilerInfos(): BelongsTo
     {
         return $this->belongsTo(profilerInfo::class);
+    }
+
+    public function telephoneAttributes(): array
+    {
+        return [
+            'profiler_phone_number',
+            'phone_number_description',
+            'profiler_infos_id',
+            'created_at',
+            'updated_at',
+        ];
     }
 }

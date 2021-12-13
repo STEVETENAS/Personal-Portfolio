@@ -23,7 +23,7 @@ class ProfilerProjectController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerProject::query();
-        $projectAttributes = (new profilerProject)->attributesToArray();
+        $projectAttributes = (new profilerProject)->projectAttributes();
         return profilerProjectResource::collection(IndexFilter::filter($projectAttributes, $query, $request));
     }
 

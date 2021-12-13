@@ -13,18 +13,6 @@ class ProfilerExp extends Model
 
     protected $table = 'profiler_exps';
 
-    protected $attributes = [
-        'job_title',
-        'job_description',
-        'company_name',
-        'company_website',
-        'job_start_date',
-        'job_end_date',
-        'profiler_infos_id',
-        'created_at',
-        'updated_at',
-    ];
-
     protected $fillable = [
         'job_title',
         'job_description',
@@ -44,5 +32,20 @@ class ProfilerExp extends Model
     public function profilerInfos(): BelongsTo
     {
         return $this->belongsTo(profilerInfo::class);
+    }
+
+    public function expAttributes(): array
+    {
+        return [
+            'job_title',
+            'job_description',
+            'company_name',
+            'company_website',
+            'job_start_date',
+            'job_end_date',
+            'profiler_infos_id',
+            'created_at',
+            'updated_at',
+        ];
     }
 }

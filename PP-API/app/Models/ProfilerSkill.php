@@ -13,15 +13,6 @@ class ProfilerSkill extends Model
 
     protected $table = 'profiler_skills';
 
-    protected $attributes = [
-        'skill_title',
-        'skill_level',
-        'skill_description',
-        'profiler_infos_id',
-        'created_at',
-        'updated_at',
-    ];
-
     protected $fillable = [
         'skill_title',
         'skill_level',
@@ -38,5 +29,17 @@ class ProfilerSkill extends Model
     public function profilerInfos(): BelongsTo
     {
         return $this->belongsTo(profilerInfo::class);
+    }
+
+    public function skillAttributes(): array
+    {
+        return [
+            'skill_title',
+            'skill_level',
+            'skill_description',
+            'profiler_infos_id',
+            'created_at',
+            'updated_at',
+        ];
     }
 }

@@ -13,17 +13,6 @@ class ProfilerResident extends Model
 
     protected $table = 'profiler_residents';
 
-    protected $attributes = [
-        'place_of_residence',
-        'city_of_residence',
-        'country_of_residence',
-        'residence_longitude',
-        'residence_latitude',
-        'profiler_infos_id',
-        'created_at',
-        'updated_at',
-    ];
-
     protected $fillable = [
         'place_of_residence',
         'city_of_residence',
@@ -42,5 +31,19 @@ class ProfilerResident extends Model
     public function profilerInfos(): BelongsTo
     {
         return $this->belongsTo(profilerInfo::class);
+    }
+
+    public function residentAttributes(): array
+    {
+        return [
+            'place_of_residence',
+            'city_of_residence',
+            'country_of_residence',
+            'residence_longitude',
+            'residence_latitude',
+            'profiler_infos_id',
+            'created_at',
+            'updated_at',
+        ];
     }
 }

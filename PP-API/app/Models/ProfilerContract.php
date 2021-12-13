@@ -13,16 +13,6 @@ class ProfilerContract extends Model
 
     protected $table = 'profiler_contracts';
 
-    protected $attributes = [
-        'contract_type',
-        'contract_description',
-        'profiler_infos_id',
-        'started_on',
-        'finished_on',
-        'created_at',
-        'updated_at',
-    ];
-
     protected $fillable = [
         'contract_type',
         'contract_description',
@@ -40,5 +30,18 @@ class ProfilerContract extends Model
     public function profilerInfos(): BelongsTo
     {
         return $this->belongsTo(profilerInfo::class);
+    }
+
+    public function contractAttributes(): array
+    {
+        return [
+            'contract_type',
+            'contract_description',
+            'profiler_infos_id',
+            'started_on',
+            'finished_on',
+            'created_at',
+            'updated_at',
+        ];
     }
 }

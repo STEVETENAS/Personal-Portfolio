@@ -23,7 +23,7 @@ class ProfilerMedicalController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerMedical::query();
-        $medicalAttributes = (new profilerMedical)->attributesToArray();
+        $medicalAttributes = (new profilerMedical)->medicalAttributes();
         return profilerMedicalResource::collection(IndexFilter::filter($medicalAttributes, $query, $request));
     }
 

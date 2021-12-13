@@ -13,14 +13,6 @@ class ProfilerIp extends Model
 
     protected $table = 'profiler_ips';
 
-    protected $attributes = [
-        'ip_name',
-        'ip_description',
-        'profiler_infos_id',
-        'created_at',
-        'updated_at',
-    ];
-
     protected $fillable = [
         'ip_name',
         'ip_description',
@@ -37,5 +29,16 @@ class ProfilerIp extends Model
     public function profilerInfos(): BelongsTo
     {
         return $this->belongsTo(profilerInfo::class);
+    }
+
+    public function ipAttributes(): array
+    {
+        return [
+            'ip_name',
+            'ip_description',
+            'profiler_infos_id',
+            'created_at',
+            'updated_at',
+        ];
     }
 }

@@ -23,7 +23,7 @@ class ProfilerEmailController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = ProfilerEmail::query();
-        $emailAttributes = (new ProfilerEmail)->attributesToArray();
+        $emailAttributes = (new ProfilerEmail)->emailAttributes();
         return profilerEmailResource::collection(IndexFilter::filter($emailAttributes, $query, $request));
     }
 

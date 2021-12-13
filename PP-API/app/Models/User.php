@@ -13,14 +13,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    protected $attributes = [
-        'name',
-        'email',
-        'profiler_infos_id',
-        'created_at',
-        'updated_at',
-
-    ];
     /**
      * The attributes that are mass assignable.
      *
@@ -59,4 +51,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo(profilerInfo::class);
     }
+
+    public function userAttributes(): array
+    {
+        return [
+            'name',
+            'email',
+            'profiler_infos_id',
+            'created_at',
+            'updated_at',
+        ];
+    }
+
 }

@@ -13,14 +13,6 @@ class ProfilerEmail extends Model
 
     protected $table = 'profiler_emails';
 
-    protected $attributes = [
-        'profiler_email',
-        'email_description',
-        'profiler_infos_id',
-        'created_at',
-        'updated_at',
-    ];
-
     protected $fillable = [
         'profiler_email',
         'email_description',
@@ -36,5 +28,16 @@ class ProfilerEmail extends Model
     public function profilerInfos(): BelongsTo
     {
         return $this->belongsTo(profilerInfo::class);
+    }
+
+    public function emailAttributes(): array
+    {
+        return [
+            'profiler_email',
+            'email_description',
+            'profiler_infos_id',
+            'created_at',
+            'updated_at',
+        ];
     }
 }

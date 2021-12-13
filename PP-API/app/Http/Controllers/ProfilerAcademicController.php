@@ -22,7 +22,7 @@ class ProfilerAcademicController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = ProfilerAcademic::query();
-        $profilerAttributes = (new ProfilerAcademic)->attributesToArray();
+        $profilerAttributes = (new ProfilerAcademic)->academicAttributes();
 
         return ProfilerAcademicResource::collection(IndexFilter::filter($profilerAttributes, $query, $request));
     }

@@ -23,7 +23,7 @@ class ProfilerTelephoneController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $query = profilerTelephone::query();
-        $telephoneAttributes = (new profilerTelephone)->attributesToArray();
+        $telephoneAttributes = (new profilerTelephone)->telephoneAttributes();
         return profilerTelephoneResource::collection(IndexFilter::filter($telephoneAttributes, $query, $request));
     }
 

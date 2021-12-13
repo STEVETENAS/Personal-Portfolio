@@ -13,17 +13,6 @@ class ProfilerAcademic extends Model
 
     protected $table = 'profiler_academics';
 
-    protected $attributes = [
-        'diploma_title',
-        'diploma_description',
-        'institution_attended',
-        'profiler_infos_id',
-        'started_on',
-        'finished_on',
-        'created_at',
-        'updated_at',
-    ];
-
     protected $fillable = [
         'diploma_title',
         'diploma_description',
@@ -42,5 +31,19 @@ class ProfilerAcademic extends Model
     public function profilerInfos(): BelongsTo
     {
         return $this->belongsTo(profilerInfo::class);
+    }
+
+    public function academicAttributes(): array
+    {
+        return [
+            'diploma_title',
+            'diploma_description',
+            'institution_attended',
+            'profiler_infos_id',
+            'started_on',
+            'finished_on',
+            'created_at',
+            'updated_at',
+        ];
     }
 }
