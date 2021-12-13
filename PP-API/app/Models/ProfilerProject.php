@@ -20,6 +20,8 @@ class ProfilerProject extends Model
         'profiler_infos_id',
         'created_at',
         'updated_at',
+        'started_on',
+        'finished_on',
     ];
 
     protected $fillable = [
@@ -27,6 +29,8 @@ class ProfilerProject extends Model
         'project_link',
         'project_description',
         'profiler_infos_id',
+        'started_on',
+        'finished_on',
     ];
 
     protected $casts = [

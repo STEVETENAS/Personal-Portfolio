@@ -17,6 +17,8 @@ class ProfilerContract extends Model
         'contract_type',
         'contract_description',
         'profiler_infos_id',
+        'started_on',
+        'finished_on',
         'created_at',
         'updated_at',
     ];
@@ -25,6 +27,8 @@ class ProfilerContract extends Model
         'contract_type',
         'contract_description',
         'profiler_infos_id',
+        'started_on',
+        'finished_on',
     ];
 
     protected $casts = [

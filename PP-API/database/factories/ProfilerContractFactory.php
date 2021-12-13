@@ -20,6 +20,8 @@ class ProfilerContractFactory extends Factory
             'contract_type' => $this->faker->randomElement($contract_type),
             'contract_description' => $this->faker->realText(300),
             'profiler_infos_id' => $this->faker->randomElement($profilerIDs),
+            'started_on' => $this->faker->date,
+            'finished_on' => $this->faker->date,
         ];
     }
 }

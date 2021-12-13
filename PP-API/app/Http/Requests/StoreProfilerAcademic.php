@@ -29,6 +29,8 @@ class StoreProfilerAcademic extends FormRequest
             'profiler_infos_id' => ['required', 'int', new ProfilerInfoIDRule(),],
             'institution_attended' => 'required|string|max:50|min:2',
             'diploma_description' => 'required|string|max:300|min:5',
+            'started_on' => 'required|date',
+            'finished_on' => 'required|date|after:started_on',
         ];
     }
 }

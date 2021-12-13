@@ -20,6 +20,8 @@ class ProfilerAcademicResource extends JsonResource
             'diploma_title' => $this->diploma_title,
             'diploma_description' => $this->diploma_description,
             'institution_attended' => $this->institution_attended,
+            'started_on' => $this->started_on,
+            'finished_on' => $this->finished_on,
             'profiler_info' => profilerInfoResource::make($this->profilerInfos),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

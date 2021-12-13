@@ -20,6 +20,8 @@ class ProfilerAcademicFactory extends Factory
             'diploma_title' => $this->faker->name,
             'diploma_description' => $this->faker->text(100),
             'institution_attended' => $this->faker->name,
+            'started_on' => $this->faker->date,
+            'finished_on' => $this->faker->date,
             'profiler_infos_id' => $this->faker->randomElement($profilerIDs),
         ];
     }

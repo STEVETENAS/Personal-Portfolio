@@ -18,6 +18,8 @@ class ProfilerAcademic extends Model
         'diploma_description',
         'institution_attended',
         'profiler_infos_id',
+        'started_on',
+        'finished_on',
         'created_at',
         'updated_at',
     ];
@@ -26,7 +28,9 @@ class ProfilerAcademic extends Model
         'diploma_title',
         'diploma_description',
         'institution_attended',
-        'profiler_infos_id'
+        'profiler_infos_id',
+        'started_on',
+        'finished_on',
     ];
 
     protected $casts = [

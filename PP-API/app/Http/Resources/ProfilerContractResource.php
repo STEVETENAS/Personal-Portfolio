@@ -19,6 +19,8 @@ class ProfilerContractResource extends JsonResource
             'id' => $this->id,
             'contract_type' => $this->contract_type,
             'contract_description' => $this->contract_description,
+            'started_on' => $this->started_on,
+            'finished_on' => $this->finished_on,
             'profiler_info' => profilerInfoResource::make($this->profilerInfos),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

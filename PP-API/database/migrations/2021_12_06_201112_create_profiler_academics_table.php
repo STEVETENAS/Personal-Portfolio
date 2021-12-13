@@ -19,6 +19,8 @@ class CreateProfilerAcademicsTable extends Migration
             $table->mediumText('diploma_description');
             $table->mediumText('institution_attended');
             $table->foreignId('profiler_infos_id');
+            $table->date('started_on');
+            $table->date('finished_on')->nullable();
             $table->softDeletes();
             $table->timestampsTz();
         });
