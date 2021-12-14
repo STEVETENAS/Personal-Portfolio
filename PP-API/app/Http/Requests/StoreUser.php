@@ -28,7 +28,7 @@ class StoreUser extends FormRequest
             'name' => 'required|string|min:3|max:50|unique:users',
             'email' => 'required|string|min:8|max:50',
             'password' => 'required|string|min:8|max:50',
-            'profiler_infos_id' => ['required|int', new ProfilerInfoIdRule()],
+            'profiler_infos_id' => ['required', 'numeric', new ProfilerInfoIdRule()],
         ];
     }
 }

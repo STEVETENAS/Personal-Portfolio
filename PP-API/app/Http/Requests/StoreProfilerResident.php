@@ -29,8 +29,8 @@ class StoreProfilerResident extends FormRequest
             'profiler_infos_id' => ['required', 'int', new profilerInfoIDRule(),],
             'city_of_residence' => 'required|string|max:50|min:2',
             'country_of_residence' => 'required|string|max:50|min:2',
-            'residence_longitude' => 'required|double',
-            'residence_latitude' => 'required|double',
+            'residence_longitude' => 'required|numeric',
+            'residence_latitude' => 'required|numeric',
         ];
     }
 }

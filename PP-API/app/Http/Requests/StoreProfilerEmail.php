@@ -25,7 +25,7 @@ class StoreProfilerEmail extends FormRequest
     public function rules(): array
     {
         return [
-            'profiler_email' => 'required|string|max:50|min:2',
+            'profiler_email' => 'required|string|max:50|min:2|unique:profiler_emails',
             'profiler_infos_id' => ['required', 'int', new ProfilerInfoIDRule(),],
             'email_description' => 'required|string|max:300|min:5',
         ];

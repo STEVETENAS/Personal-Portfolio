@@ -25,7 +25,7 @@ class UpdateProfilerEmail extends FormRequest
     public function rules(): array
     {
         return [
-            'profiler_email' => 'required|string|max:50|min:2' . $this->profiler_email,
+            'profiler_email' => 'required|string|max:50|min:2|unique:profiler_emails' . $this->profiler_email,
             'profiler_infos_id' => ['required', 'int', new ProfilerInfoIDRule(),],
             'email_description' => 'required|string|max:300|min:5',
         ];

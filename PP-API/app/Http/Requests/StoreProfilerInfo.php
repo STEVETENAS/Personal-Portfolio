@@ -33,8 +33,8 @@ class StoreProfilerInfo extends FormRequest
             'date_of_birth' => 'required',
             'number_of_children' => 'required|int',
             'married' => 'required|bool',
-            'profiler_image' => 'required|file',
-            'background_image' => 'required|file',
+            'profiler_image' => 'required|string|unique:profiler_infos',
+            'background_image' => 'required|string|unique:profiler_infos',
         ];
     }
 }

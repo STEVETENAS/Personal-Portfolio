@@ -16,7 +16,7 @@ class CreateProfilerMedicalsTable extends Migration
         Schema::create('profiler_medicals', function (Blueprint $table) {
             $table->id();
             $table->mediumText('medical_status');
-            $table->Text('medical_description');
+            $table->Text('medical_description')->nullable();
             $table->foreignId('profiler_infos_id');
             $table->softDeletes();
             $table->timestampsTz();
