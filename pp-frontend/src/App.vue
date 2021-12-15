@@ -6,7 +6,7 @@
       <profile></profile>
     </div>
     <div id="about">
-      about
+      <about></about>
     </div>
     <div id="skills">
       skill
@@ -25,11 +25,13 @@
 
 <script>
 import profile from "@/components/leftSideComponents/Profile";
+import about from "@/components/leftSideComponents/About";
 
 export default {
   name: 'App',
   components: {
     profile,
+    about,
   }
 }
 </script>
