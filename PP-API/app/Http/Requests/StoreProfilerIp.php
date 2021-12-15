@@ -28,7 +28,7 @@ class StoreProfilerIp extends FormRequest
             'ip_name' => 'required|string|max:50|min:2',
             'profiler_infos_id' => ['required', 'int', new ProfilerInfoIDRule(),],
             'ip_description' => 'required|string|max:300|min:5',
-            'ip_img' => 'required|file',
+            'ip_img' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ];
     }
 }

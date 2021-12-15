@@ -43,8 +43,8 @@ class ProfilerInfoController extends Controller
             [$width, $height] = getimagesize($request->file('profiler_image'));
             $date = date('Y-m-d');
             $id = uniqid('', true);
-            $profilerImagePath = "images/profiler_images/{$date}-{$profilerImageName}-{$id}-{$width}-{$height}";
-            $input['profiler_image'] = $request->file('profiler_image')->store($profilerImagePath);
+            $profilerImagePath = "public/images/profiler_images/{$date}-{$id}-{$width}-{$height}";
+            $input['profiler_image'] = $request->file('profiler_image')->storeAs($profilerImagePath,$profilerImageName);
         }
 
         if ($request->hasFile('background_image')) {
@@ -52,8 +52,8 @@ class ProfilerInfoController extends Controller
             [$width, $height] = getimagesize($request->file('background_image'));
             $date = date('Y-m-d');
             $id = uniqid('', true);
-            $bgImagePath = "images/bg_images/{$date}-{$bgImageName}-{$id}-{$width}-{$height}";
-            $input['background_image'] = $request->file('background_image')->store($bgImagePath);
+            $bgImagePath = "public/images/bg_images/{$date}-{$id}-{$width}-{$height}";
+            $input['background_image'] = $request->file('background_image')->storeAs($bgImagePath, $bgImageName);
         }
 
 

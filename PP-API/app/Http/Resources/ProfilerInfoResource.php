@@ -15,6 +15,8 @@ class ProfilerInfoResource extends JsonResource
      */
     public function toArray($request): array
     {
+        $path = str_replace('public','/storage',$this->profiler_image);
+        $path1 = str_replace('public','/storage',$this->background_image);
         return [
             'id' => $this->id,
             'first_name' => $this->first_name,
@@ -26,8 +28,8 @@ class ProfilerInfoResource extends JsonResource
             'place_of_origin' => $this->place_of_origin,
             'number_of_children' => $this->number_of_children,
             'married' => $this->married ? "Yes" : "No",
-            'profiler_image' => $this->profiler_image,
-            'background_image' => $this->background_image,
+            'profiler_image' => $path,
+            'background_image' => $path1,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
