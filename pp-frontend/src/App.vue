@@ -9,16 +9,16 @@
       <about></about>
     </div>
     <div id="skills">
-      skill
+      <skill></skill>
     </div>
     <div id="exp">
-      exp
+      <experience></experience>
     </div>
-    <div id="pi_lag">
-      pi_lang
+    <div id="pi_lang">
+      <pi_Lang></pi_Lang>
     </div>
     <div id="academic">
-      academic
+      <academic></academic>
     </div>
   </div>
 </template>
@@ -26,12 +26,21 @@
 <script>
 import profile from "@/components/leftSideComponents/Profile";
 import about from "@/components/leftSideComponents/About";
+import skill from "@/components/leftSideComponents/Skill";
+import experience from "@/components/rightSideComponents/Experience";
+import academic from "@/components/rightSideComponents/Academic";
+import pi_Lang from "@/components/rightSideComponents/Pi_Lang";
+
 
 export default {
   name: 'App',
   components: {
     profile,
     about,
+    skill,
+    experience,
+    academic,
+    pi_Lang
   }
 }
 </script>
@@ -53,8 +62,6 @@ export default {
 }
 
 .grid-container {
-  width: 100%;
-  height: 100%;
   display: grid;
   grid-template:
     'profile profile exp exp exp'
@@ -62,40 +69,41 @@ export default {
     'about about piLang piLang piLang'
     'skills skills academic academic academic'
     'skills skills academic academic academic';
+  background-color: #dbdbd2;
 }
 
 #profile {
   grid-area: profile;
-  background-color: #015F9F;
   margin-right: 1%;
   min-width: 200px;
+  background-color: #dbdbd2;
 }
 
 #about {
   grid-area: about;
-  background-color: #d7a02d;
   margin-right: 1%;
+  background-color: #dbdbd2;
 }
 
 #skills {
   grid-area: skills;
-  background-color: #cd2727;
   margin-right: 1%;
+  background-color: #dbdbd2;
 }
 
 #exp {
   grid-area: exp;
-  background-color: #5a6f92;
+  background-color: #dbdbd2;
 }
 
-#pi_lag {
+#pi_lang {
   grid-area: piLang;
-  background-color: #e9f807;
+  background-color: #dbdbd2;
 }
 
 #academic {
   grid-area: academic;
-  background-color: #16d226;
+  background-color: #dbdbd2;
 }
 
 @media screen and (max-width: 480px) {
@@ -121,6 +129,18 @@ export default {
   }
 
   #about {
+    width: 100%;
+  }
+
+  #academic {
+    width: 100%;
+  }
+
+  #pi_lang {
+    width: 100%;
+  }
+
+  #exp {
     width: 100%;
   }
 }

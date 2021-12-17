@@ -1,11 +1,11 @@
 <template>
-  <div id="about" style="width: 100%;
+  <div id="about" style="
                   display: flex;
                   flex-direction: column;
                   justify-content: center;
                   align-items: start;
                   background-color: #015F9F;
-                  font-size: 1.7em;
+                  font-size: 1.5em;
                   color: #f1f1f1;
               ">
 
@@ -126,7 +126,6 @@ export default {
         .then(
             response => {
               this.email = response.data.data[0];
-              console.log(response.data.data[0]);
             })
         .catch(
             error => {
@@ -154,7 +153,6 @@ export default {
         .then(
             response => {
               this.exp = response.data.data[0];
-              console.log(response.data.data[0]);
             })
         .catch(
             error => {
@@ -167,11 +165,11 @@ export default {
 <style scoped>
 
 .about_item {
-  width: 100%;
+  width: 95%;
   display: flex;
   align-items: center;
-  padding: 20px;
   text-align: start;
+  padding: 20px 0px 0px 20px;
 }
 
 .about_item_text {
@@ -181,12 +179,13 @@ export default {
 }
 
 .about_recap {
+  padding-top: 5%;
   width: 95%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  font-size: 24px;
+  font-size: 1.0em;
   margin: auto;
 }
 

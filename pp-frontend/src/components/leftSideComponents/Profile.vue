@@ -31,8 +31,6 @@ export default {
   name: "profile",
   data() {
     return {
-      profileBgPath: "",
-      profileImgPath: "'../../assets/img/img3.jpg'",
       user: [],
     }
   },
@@ -52,7 +50,6 @@ export default {
 
 <style scoped>
 #profile {
-  width: 100%;
   height: 320px;
   background-repeat: no-repeat;
   background-size: cover;
