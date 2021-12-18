@@ -2,42 +2,13 @@
   <section id="academic">
     <div class="academic_head">
       <div class="academic_head_start">
-        <svg height="48" style=" fill:#000000;" viewBox="0 0 172 172"
-             width="48" x="0px"
-             xmlns="http://www.w3.org/2000/svg"
-             y="0px">
-          <g fill="none" fill-rule="nonzero" font-family="none" font-size="none" font-weight="none" stroke="none"
-             stroke-dasharray="" stroke-dashoffset="0" stroke-linecap="butt" stroke-linejoin="miter"
-             stroke-miterlimit="10" stroke-width="1" style="mix-blend-mode: normal" text-anchor="none">
-            <path d="M0,172v-172h172v172z" fill="none"></path>
-            <g fill="#ecf0f1">
-              <path
-                  d="M86,42.42611l-86,36.40723l28.66667,18.19661v31.97006h114.66667v-31.97006l14.33333,-9.09831v41.06836h14.33333v-50.16667z"></path>
-            </g>
-          </g>
-        </svg>
+        <i class="fas fa-graduation-cap fa-3x"></i>
         <div class="academic_head_txt">
           <h1>Cursus academique</h1>
           <i>Diplomes et formations certifiantes</i>
         </div>
       </div>
-      <div class="menuIcon">
-        <svg height="30" style=" fill:#000000;" viewBox="0 0 172 172"
-             width="30" x="0px"
-             xmlns="http://www.w3.org/2000/svg"
-             y="0px">
-          <g fill="none" fill-rule="nonzero" font-family="none" font-size="none" font-weight="none" stroke="none"
-             stroke-dasharray="" stroke-dashoffset="0" stroke-linecap="butt" stroke-linejoin="miter"
-             stroke-miterlimit="10" stroke-width="1" style="mix-blend-mode: normal" text-anchor="none">
-            <path d="M0,172v-172h172v172z" fill="none"></path>
-            <g fill="#ffffff">
-              <path
-                  d="M86,22.93333c-9.4993,0 -17.2,7.7007 -17.2,17.2c0,9.4993 7.7007,17.2 17.2,17.2c9.4993,0 17.2,-7.7007 17.2,-17.2c0,-9.4993 -7.7007,-17.2 -17.2,-17.2zM86,68.8c-9.4993,0 -17.2,7.7007 -17.2,17.2c0,9.4993 7.7007,17.2 17.2,17.2c9.4993,0 17.2,-7.7007 17.2,-17.2c0,-9.4993 -7.7007,-17.2 -17.2,-17.2zM86,114.66667c-9.4993,0 -17.2,7.7007 -17.2,17.2c0,9.4993 7.7007,17.2 17.2,17.2c9.4993,0 17.2,-7.7007 17.2,-17.2c0,-9.4993 -7.7007,-17.2 -17.2,-17.2z"></path>
-            </g>
-          </g>
-        </svg>
-
-      </div>
+      <i class="fas fa-ellipsis-v " style="padding-right: 20px"></i>
     </div>
     <div class="academic_body">
       <div v-for="aca in academics" :key="aca.id" class="academic_item">
@@ -89,18 +60,25 @@ export default {
 .academic_head {
   width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   background-color: #015F9F;
-  padding: 10px 0px;
+  padding: 12px 0;
   color: #f1f1f1;
-  align-items: start;
+  align-items: center;
+}
+
+.academic_head_txt {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: start;
 }
 
 .academic_head_start {
   display: flex;
-  flex-direction: row;
+  align-items: center;
   gap: 20px;
+  padding-left: 20px;
 }
 
 .duration {
@@ -108,6 +86,7 @@ export default {
 }
 
 .academic_body {
+  width: 95%;
   height: 620px;
   margin: 5px;
   color: black;
@@ -118,7 +97,6 @@ export default {
 }
 
 .academic_item {
-  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;

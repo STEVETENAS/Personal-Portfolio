@@ -58,10 +58,12 @@ export default {
   text-align: center;
   color: #2c3e50;
   display: flex;
-  margin: auto;
+  background-color: #dbdbd2;
 }
 
 .grid-container {
+  width: 95%;
+  margin: 1% auto;
   display: grid;
   grid-template:
     'profile profile exp exp exp'
@@ -69,47 +71,48 @@ export default {
     'about about piLang piLang piLang'
     'skills skills academic academic academic'
     'skills skills academic academic academic';
-  background-color: #dbdbd2;
 }
 
 #profile {
+  height: 320px;
   grid-area: profile;
   margin-right: 1%;
-  min-width: 200px;
-  background-color: #dbdbd2;
+  min-width: 250px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px 10px 0 0;
 }
 
 #about {
   grid-area: about;
   margin-right: 1%;
-  background-color: #dbdbd2;
+  min-width: 250px;
 }
 
 #skills {
   grid-area: skills;
   margin-right: 1%;
-  background-color: #dbdbd2;
+  min-width: 250px;
 }
 
 #exp {
   grid-area: exp;
-  background-color: #dbdbd2;
 }
 
 #pi_lang {
   grid-area: piLang;
-  background-color: #dbdbd2;
 }
 
 #academic {
   grid-area: academic;
-  background-color: #dbdbd2;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 550px) {
   .grid-container {
     width: 100%;
     height: 100%;
+    margin: 0;
     display: grid;
     grid-template:
     'profile'
@@ -144,4 +147,27 @@ export default {
     width: 100%;
   }
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(89, 110, 139, 0.78);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #015F9F;
+}
+
 </style>

@@ -27,11 +27,11 @@ class StoreProfilerExp extends FormRequest
         return [
             'job_title' => 'required|string|max:50|min:2',
             'company_name' => 'required|string|max:50|min:2',
-            'company_website' => 'required|string|max:200|min:2',
+            'company_website' => 'string|max:200|min:2',
             'job_start_date' => 'required',
-            'job_end_date' => 'required|after:job_start_date',
+            'job_end_date' => 'after:job_start_date',
             'profiler_infos_id' => ['required', 'int', new ProfilerInfoIDRule(),],
-            'job_description' => 'required|string|max:300|min:5',
+            'job_description' => 'string|max:300|min:5',
         ];
     }
 }

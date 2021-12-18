@@ -5,7 +5,7 @@
       <div class="item_content">
         <div class="item_top">
           <h2> {{ skill.skill_title }} </h2>
-          <i class="fas fa-star " style="color: #a88715; font-size: 1.2em"></i>
+          <i class="fas fa-star " style="color: #a88715; font-size: .7em"></i>
         </div>
         <p>{{ skill.skill_description }}</p>
         <div class="skill-bar">
@@ -44,24 +44,26 @@ export default {
 
 <style scoped>
 #skills {
-  padding: 5% 1px;
+  padding: 8% 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
-  font-size: 1em;
+  font-size: 1.2em;
   height: 650px;
   overflow-x: hidden;
   scroll-behavior: smooth;
   gap: 30px;
+  border-radius: 0 0 10px 10px;
 }
 
 .skill_item {
-  width: 95%;
+  width: 85%;
   display: flex;
-  gap: 20px;
+  gap: 32px;
   color: black;
   padding: 10px 0;
+  margin: auto;
 }
 
 .item_content {
@@ -102,15 +104,5 @@ export default {
   background-color: #015F9F;
   align-self: center;
   margin-left: -10px;
-}
-
-@media screen and (max-width: 768px) {
-  .skill_item {
-    width: 90%;
-    display: flex;
-    gap: 20px;
-    color: black;
-    padding: 10px 0px;
-  }
 }
 </style>

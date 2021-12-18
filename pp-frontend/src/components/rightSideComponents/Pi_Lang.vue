@@ -73,7 +73,6 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin: 2% 2% 2% 0;
 }
 
 #intrest {
@@ -88,6 +87,7 @@ export default {
   color: black;
   padding: 30px;
   text-align: start;
+  margin-bottom: 2%;
 }
 
 .int_body {
@@ -111,6 +111,7 @@ export default {
   border-radius: 5px;
   text-align: start;
   padding: 30px;
+  margin-bottom: 2%;
 }
 
 .lang_body {

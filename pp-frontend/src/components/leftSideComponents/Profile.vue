@@ -49,15 +49,9 @@ export default {
 </script>
 
 <style scoped>
-#profile {
-  height: 320px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
 .profile_bg {
-  height: inherit;
+  height: 100%;
+  width: 100%;
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   box-shadow: inset 0 0 0 200px rgba(62, 92, 172, 0.578);
@@ -67,10 +61,7 @@ export default {
   align-items: center;
   color: whitesmoke;
   position: relative;
-}
-
-.fas {
-  font-size: 2em;
+  border-radius: 10px 10px 0 0;
 }
 
 .searchbar {
@@ -80,11 +71,12 @@ export default {
   flex-wrap: wrap;
   align-items: center;
   background-color: whitesmoke;
-  color: rgb(149, 149, 149);
+  color: gray;
   border-radius: 5px;
   justify-content: space-between;
   margin-top: 15px;
   padding: 1px 15px;
+  font-size: 1.2em;
 }
 
 input[type=text] {
@@ -98,7 +90,7 @@ input[type=text] {
 .rightSide {
   display: flex;
   align-items: center;
-  color: rgb(149, 149, 149);
+  color: gray;
 }
 
 .userInfo {
@@ -106,7 +98,7 @@ input[type=text] {
   display: flex;
   align-items: center;
   margin-bottom: 5%;
-  gap: 10px;
+  gap: 20px;
   text-align: start;
 }
 
@@ -119,8 +111,8 @@ input[type=text] {
 
 .absolute_img {
   position: absolute;
-  bottom: -35px;
-  right: 10px;
+  bottom: -12%;
+  right: 8%;
   color: white;
   font-size: 1.5em;
   background-color: #cb4747;
@@ -138,6 +130,7 @@ input[type=text] {
   }
 
   .profile_img {
+    margin-top: 20px;
     width: 100px;
     height: 100px;
   }
