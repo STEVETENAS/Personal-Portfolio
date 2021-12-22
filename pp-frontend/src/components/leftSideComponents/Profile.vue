@@ -1,9 +1,10 @@
 <template>
-  <div id="profile" v-bind:style="{ 'background-image': 'url('+'http://127.0.0.1:8000' + user.background_image + ')' }">
+  <div id="profile_body"
+       v-bind:style="{ 'background-image': 'url('+'http://127.0.0.1:8000' + user.background_image + ')' }">
     <div class="profile_bg">
       <div class="searchbar">
         <i class="fas fa-bars"></i>
-        <input class="borderless" placeholder="Besion d'un chef de projet?" type="text">
+        <input class="borderless" placeholder="Need a software Developer?" type="text">
         <div class="rightSide">
           <i class="fas fa-search"></i>
           <i class="far fa-horizontal-rule" style="transform: rotate(90deg);"></i>
@@ -49,6 +50,15 @@ export default {
 </script>
 
 <style scoped>
+#profile_body {
+  width: 100%;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px 10px 0 0;
+}
+
 .profile_bg {
   height: 100%;
   width: 100%;
@@ -68,15 +78,14 @@ export default {
   width: 85%;
   height: 40px;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   background-color: whitesmoke;
   color: gray;
   border-radius: 5px;
   justify-content: space-between;
-  margin-top: 15px;
   padding: 1px 15px;
   font-size: 1.2em;
+  margin: 15px auto;
 }
 
 input[type=text] {
@@ -112,17 +121,21 @@ input[type=text] {
 .absolute_img {
   position: absolute;
   bottom: -12%;
-  right: 8%;
+  right: 6%;
   color: white;
-  font-size: 1.5em;
+  font-size: 1.2em;
   background-color: #cb4747;
   border-radius: 50%;
   padding: 20px 15px;
 }
 
+.absolute_img:hover {
+  background-color: #c96d6d;
+}
+
 @media screen and (max-width: 768px) {
   .userInfo {
-    margin-bottom: 15%;
+    margin-bottom: 12%;
     display: flex;
     flex-direction: column;
     text-align: center;

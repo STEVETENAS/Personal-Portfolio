@@ -1,5 +1,5 @@
 <template>
-  <div id="skills">
+  <div id="skills_body">
     <div v-for="skill in skills" :key="skill.id" class="skill_item">
       <i class="fas fa-check-square " style="color: dodgerblue; font-size: 2.0em;"></i>
       <div class="item_content">
@@ -43,18 +43,10 @@ export default {
 </script>
 
 <style scoped>
-#skills {
-  padding: 8% 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  font-size: 1.2em;
-  height: 650px;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  gap: 30px;
-  border-radius: 0 0 10px 10px;
+#skills_body {
+  width: 100%;
+  height: 100%;
+  padding: 2% 0;
 }
 
 .skill_item {
@@ -64,14 +56,15 @@ export default {
   color: black;
   padding: 10px 0;
   margin: auto;
+  font-size: .9em;
 }
 
 .item_content {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   text-align: start;
+  gap: 5px;
 }
 
 .item_top {

@@ -34,7 +34,7 @@ class ProfilerIpController extends Controller
      * @return profilerIpResource
      * @throws Exception
      */
-    public function store(StoreprofilerIp $request): profilerIpResource
+    public function store(StoreProfilerIp $request): profilerIpResource
     {
         $input = $request->all();
 
@@ -43,8 +43,8 @@ class ProfilerIpController extends Controller
             [$width, $height] = getimagesize($request->file('ip_img'));
             $date = date('Y-m-d');
             $id = uniqid('', true);
-            $ipImagePath = "images/ips_images/{$date}-{$ipImageName}-{$id}-{$width}-{$height}";
-            $input['ip_img'] = $request->file('ip_img')->store($ipImagePath);
+            $ipImagePath = "public/images/ips_images/{$date}-{$id}-{$width}-{$height}";
+            $input['ip_img'] = $request->file('ip_img')->storeAs($ipImagePath,$ipImageName);
         }
 
         $ip = profilerIp::create($input);

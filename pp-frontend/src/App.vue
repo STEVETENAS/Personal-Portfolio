@@ -11,13 +11,9 @@
     <div id="skills">
       <skill></skill>
     </div>
-    <div id="exp">
+    <div id="rightSide">
       <experience></experience>
-    </div>
-    <div id="pi_lang">
       <pi_Lang></pi_Lang>
-    </div>
-    <div id="academic">
       <academic></academic>
     </div>
   </div>
@@ -66,65 +62,67 @@ export default {
   margin: 1% auto;
   display: grid;
   grid-template:
-    'profile profile exp exp exp'
-    'about about exp exp exp'
-    'about about piLang piLang piLang'
-    'skills skills academic academic academic'
-    'skills skills academic academic academic';
+    'profile profile rightSide rightSide rightSide'
+    'about about rightSide rightSide rightSide'
+    'about about rightSide rightSide rightSide'
+    'skills skills rightSide rightSide rightSide'
+    'skills skills rightSide rightSide rightSide';
 }
 
 #profile {
-  height: 320px;
+  width: 100%;
   grid-area: profile;
-  margin-right: 1%;
-  min-width: 250px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px 10px 0 0;
+  min-width: 270px;
 }
 
 #about {
+  height: 100%;
+  width: 100%;
   grid-area: about;
-  margin-right: 1%;
-  min-width: 250px;
+  min-width: 270px;
 }
 
 #skills {
   grid-area: skills;
-  margin-right: 1%;
-  min-width: 250px;
+  min-width: 270px;
+  width: 100%;
+  background-color: #f1f1f1;
+  border-radius: 0 0 10px 10px;
 }
 
-#exp {
-  grid-area: exp;
+#rightSide {
+  width: 100%;
+  height: 100%;
+  grid-area: rightSide;
+  margin-left: 1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
 }
 
-#pi_lang {
-  grid-area: piLang;
-}
+@media screen and (max-width: 768px) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
 
-#academic {
-  grid-area: academic;
-}
-
-@media screen and (max-width: 550px) {
   .grid-container {
     width: 100%;
     height: 100%;
     margin: 0;
-    display: grid;
+    display: inline-grid;
     grid-template:
     'profile'
     'skills'
-    'exp'
-    'piLang'
-    'academic'
-    'about'
+    'rightSide'
+    'about';
+    grid-gap: 10px;
   }
 
   #profile {
     width: 100%;
+    height: 320px;
   }
 
   #skills {
@@ -135,17 +133,11 @@ export default {
     width: 100%;
   }
 
-  #academic {
+  #rightSide {
     width: 100%;
+    margin-left: 0;
   }
 
-  #pi_lang {
-    width: 100%;
-  }
-
-  #exp {
-    width: 100%;
-  }
 }
 
 /* width */

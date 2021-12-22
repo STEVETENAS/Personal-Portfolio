@@ -1,6 +1,5 @@
 <template>
-  <div id="about">
-
+  <div id="about_body">
     <div id="item-1" class="about_item">
       <i class="fas fa-birthday-cake"></i>
       <div class="about_item_text">
@@ -156,14 +155,15 @@ export default {
 
 <style scoped>
 
-#about {
+#about_body {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   background-color: #015F9F;
-  font-size: 1.2em;
   color: #f1f1f1;
+  padding-top: 2%;
 }
 
 .about_item {
@@ -172,12 +172,11 @@ export default {
   display: flex;
   align-items: center;
   text-align: start;
-  padding: 8px;
 }
 
 .about_item_text {
   width: 100%;
-  padding: 20px 0;
+  padding: 16px 0;
   border-bottom: 1px solid lightgray;
 }
 
@@ -191,14 +190,14 @@ export default {
 }
 
 .fas {
-  width: 100px;
-  font-size: 2.1em;
+  width: 70px;
+  font-size: 2em;
 }
 
 .about_recap a {
   text-decoration: none;
   color: whitesmoke;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .about_recap a:hover {
