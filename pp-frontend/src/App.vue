@@ -1,6 +1,4 @@
 <template>
-  <link crossorigin="anonymous" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" rel="stylesheet"/>
   <div class="grid-container">
     <div id="profile">
       <profile></profile>
@@ -24,8 +22,8 @@ import profile from "@/components/leftSideComponents/Profile";
 import about from "@/components/leftSideComponents/About";
 import skill from "@/components/leftSideComponents/Skill";
 import experience from "@/components/rightSideComponents/Experience";
-import academic from "@/components/rightSideComponents/Academic";
 import pi_Lang from "@/components/rightSideComponents/Pi_Lang";
+import academic from "@/components/rightSideComponents/Academic";
 
 
 export default {
@@ -35,8 +33,8 @@ export default {
     about,
     skill,
     experience,
+    pi_Lang,
     academic,
-    pi_Lang
   }
 }
 </script>
@@ -55,10 +53,10 @@ export default {
   color: #2c3e50;
   display: flex;
   background-color: #dbdbd2;
+  position: relative;
 }
-
 .grid-container {
-  width: 95%;
+  width: 90%;
   margin: 1% auto;
   display: grid;
   grid-template:
@@ -86,7 +84,6 @@ export default {
   grid-area: skills;
   min-width: 270px;
   width: 100%;
-  background-color: #f1f1f1;
   border-radius: 0 0 10px 10px;
 }
 
@@ -99,6 +96,7 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 22px;
+  background-color: #d9d9d0;
 }
 
 @media screen and (max-width: 768px) {
@@ -109,15 +107,12 @@ export default {
 
   .grid-container {
     width: 100%;
-    height: 100%;
-    margin: 0;
     display: inline-grid;
     grid-template:
     'profile'
     'skills'
     'rightSide'
     'about';
-    grid-gap: 10px;
   }
 
   #profile {

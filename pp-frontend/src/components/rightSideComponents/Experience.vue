@@ -9,14 +9,15 @@
             <i>Company Expertise</i>
           </div>
         </div>
-        <i class="fas fa-ellipsis-v"></i>
+        <i class="fas fa-plus-circle fa-2x" @click="toggleModal(undefined)"></i>
       </div>
     </div>
     <div class="pro_exp_body">
       <div v-for="exp in exps" :key="exp.id" class="pe_item">
         <div class="first_line">
           <h3> {{ exp.job_title }} - <b>@{{ exp.company_name }}</b></h3>
-          <i :title="'Edit '+exp.job_title  + ' infos'" class="fas fa-edit edit_fas"></i>
+          <i id="edit-btn" :title="'Edit '+exp.job_title  + ' infos'" class="fas fa-edit edit_fas"
+             @click="toggleModal(exp.id)"></i>
         </div>
         <p class="duration">From {{ exp.job_start_date }} to {{ exp.job_end_date ? exp.job_end_date : "Date" }}
           {{ exp.company_website ? '- ' + exp.company_website : "" }} </p>
@@ -24,29 +25,47 @@
       </div>
     </div>
   </div>
+  <teleport to="#app">
+    <experienceModal v-if="isShowModal" :id="id" :expsError="expsError" :isShowModal="toggleModal"/>
+  </teleport>
 </template>
 
 <script>
 import profilerService from "@/services/ProfilerService";
+import experienceModal from "@/components/modalComponents/ExperienceModal";
 
 export default {
   name: "Experience",
+  components: {
+    experienceModal,
+  },
   data() {
     return {
-      exps: []
+      exps: [],
+      expsError: [],
+      isShowModal: false,
+      id: undefined
     }
   },
   created() {
-    profilerService.getItem('exp', 'profiler_exp', 1).then(
-        response => {
-          this.exps = response.data.data;
-        }
-    )
+    profilerService.getItem('exp', 'profiler_exp', 1)
+        .then(
+            response => {
+              this.exps = response.data.data;
+            }
+        )
         .catch(
             error => {
+              this.expsError = error.response;
               console.log(error.response);
             }
         )
+  },
+  methods: {
+    toggleModal(id) {
+      this.id = id;
+      this.isShowModal = !this.isShowModal;
+    }
   }
 }
 </script>
@@ -133,4 +152,10 @@ export default {
   color: gray;
 }
 
+@media screen and (max-width: 768px) {
+  .pro_exp_head {
+    width: 100%;
+    border-radius: 0;
+  }
+}
 </style>

@@ -47,6 +47,7 @@ export default {
   width: 100%;
   height: 100%;
   padding: 2% 0;
+  background-color: #f1f1f1;
 }
 
 .skill_item {

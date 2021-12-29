@@ -77,6 +77,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #dadad1;
 }
 
 #interest {
@@ -132,7 +133,6 @@ export default {
 @media screen and (max-width: 768px) {
   #pi_lang_body {
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

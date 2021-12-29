@@ -9,14 +9,15 @@
             <i>Diplomes et formations certifiantes</i>
           </div>
         </div>
-        <i class="fas fa-ellipsis-v "></i>
+        <i class="fas fa-plus-circle fa-2x" @click="toggleModal(undefined)"></i>
       </div>
     </div>
     <div class="academic_body">
       <div v-for="aca in academics" :key="aca.id" class="academic_item">
         <div class="first_line">
           <h3> {{ aca.diploma_title }} - <b>@{{ aca.institution_attended }} </b></h3>
-          <i :title="'Edit ' + aca.diploma_title + ' info'" class="fas fa-edit edit_fas"></i>
+          <i id="edit-btn" :title="'Edit ' + aca.diploma_title + ' info'" class="fas fa-edit edit_fas"
+             @click="toggleModal(aca.id)"></i>
         </div>
         <p>
           <span class="duration">{{ aca.finished_on ? aca.finished_on : "to date" }}
@@ -26,16 +27,32 @@
       </div>
     </div>
   </section>
+  <teleport to="#app">
+    <academicModal v-if="isShowModal" :id="id" :acaError="acasError" :isShowModal="toggleModal"/>
+  </teleport>
 </template>
 
 <script>
 import profilerService from "@/services/ProfilerService";
+import academicModal from "@/components/modalComponents/AcademicModal";
 
 export default {
   name: "Academic",
+  components: {
+    academicModal
+  },
   data() {
     return {
-      academics: []
+      academics: [],
+      acasError: [],
+      isShowModal: false,
+      id: undefined
+    }
+  },
+  methods: {
+    toggleModal(id) {
+      this.id = id;
+      this.isShowModal = !this.isShowModal;
     }
   },
   created() {
@@ -118,7 +135,7 @@ export default {
   border-bottom: 2px solid grey;
   text-align: start;
   padding: 15px 0;
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin: 10px auto;
 }
 
@@ -141,6 +158,18 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .academic_body {
+    width: 100%;
+    height: 100%;
+  }
+
+  .academic_head {
+    width: 100%;
+    background-color: #015F9F;
+    border-radius: 0;
+    color: #f1f1f1;
   }
 }
 

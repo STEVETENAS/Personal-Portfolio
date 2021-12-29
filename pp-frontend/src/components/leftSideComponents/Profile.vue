@@ -4,11 +4,11 @@
     <div class="profile_bg">
       <div class="searchbar">
         <i class="fas fa-bars"></i>
-        <input class="borderless" placeholder="Need a software Developer?" type="text">
+        <input id="searchBar" class="borderless" placeholder="Need a software Developer?" type="text">
         <div class="rightSide">
           <i class="fas fa-search"></i>
           <i class="far fa-horizontal-rule" style="transform: rotate(90deg);"></i>
-          <i class="fas fa-times"></i>
+          <i class="fas fa-times" @click="cleared"></i>
         </div>
       </div>
 
@@ -46,7 +46,13 @@ export default {
               console.log(error.response);
             })
   },
+  methods: {
+    cleared() {
+      document.getElementById("searchBar").value = '';
+    }
+  }
 }
+
 </script>
 
 <style scoped>
@@ -134,6 +140,10 @@ input[type=text] {
 }
 
 @media screen and (max-width: 768px) {
+  #profile_body {
+    height: 320px;
+  }
+
   .userInfo {
     margin-bottom: 12%;
     display: flex;
