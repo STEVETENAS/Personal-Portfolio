@@ -1,15 +1,15 @@
 <template>
   <div id="profile_body" class="w-full min-w-[250px] bg-no-repeat bg-center bg-cover"
-        v-bind:style="{ 'background-image': 'url('+'http://127.0.0.1:8000' + user.background_image + ')' }">
-    <div id="profile_bg" class="space-y-8 xl:space-y-12  backdrop-blur-sm bg-blue-400/30 py-4">
+        :style="{ 'background-image': 'url('+'http://127.0.0.1:8000' + user.background_image + ')' }">
+    <div id="profile_bg" class="space-y-8 xl:space-y-12  backdrop-blur-sm bg-blue-400/30 py-4 text-gray-100">
       
-      <div id="searchGroup" class="w-[85%] flex justify-between m-auto items-center min-w-[250px] bg-white p-2 rounded text-gray-400">
-        <i class="fas fa-bars"></i>
-        <input id="searchBar" class="text-center w-[70%] text-gray-700" placeholder="Need a software Developer?" type="text">
+      <div id="searchGroup" class="w-[85%] flex justify-between m-auto items-center min-w-[250px] bg-white dark:bg-slate-600 p-2 rounded text-gray-400 dark:text-gray-200">
+        <i class="fas fa-bars hover:text-black"></i>
+        <input id="searchBar" class="text-center w-[70%] text-gray-700 dark:bg-slate-700 rounded" placeholder="Need a software Developer?" type="text">
         <div class="flex items-center">
-          <i class="fas fa-search"></i>
+          <i class="fas fa-search hover:text-black"></i>
           <i class="far fa-horizontal-rule rotate-90"></i>
-          <i class="fas fa-times" @click="cleared"></i>
+          <i class="fas fa-times hover:text-black" @click="cleared"></i>
         </div>
       </div>
 
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <i id="share" class="fas fa-paper-plane p-6 xl:p-4 text-2xl bg-red-600 rounded-full fixed -bottom-8 right-4"></i>
+      <i id="share" class="fas fa-paper-plane p-4 text-2xl bg-red-600 hover:bg-red-800 rounded-full fixed -bottom-8 right-4"></i>
     
     </div>
   </div>
