@@ -98,8 +98,9 @@ import Academic from "./components/academic.vue";
     'skills'
     'rightSide'
     'about';
-    margin: 0;
+    margin: auto;
     padding: 0;
+    row-gap: 5px;
   }
 }
 </style>

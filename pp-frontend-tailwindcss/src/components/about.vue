@@ -133,7 +133,7 @@ export default {
 }
 </script>
 <template>
-  <div id="about_body" class="bg-blue-600 dark:bg-slate-600 text-white text-2xl w-full pt-6 px-2 space-y-4">
+  <div id="about_body" class="bg-blue-600 dark:bg-slate-600 text-white text-xl w-full pt-6 px-2 space-y-4">
     <div id="item-1" class="flex items-center w-11/12 m-auto">
       <i class="fas fa-birthday-cake text-4xl pr-8" @click="toggleModal(user.id)"></i>
       <div class="text-left border-b-2 py-2 w-full">

@@ -39,7 +39,7 @@ export default {
 <template>
   <div id="pi_lang_body" class="w-full space-y-2 xl:flex xl:space-x-2 pb-4">
 
-    <div id="interest" class="w-11/12 rounded-lg bg-gray-50 m-auto p-4">
+    <div id="interest" class="w-11/12 rounded-lg bg-gray-50 dark:bg-slate-600 dark:text-gray-50 m-auto p-4">
       <div class="int_head">
         <p class="text-2xl">Hobbies</p>
         <i>Thinks i like to do</i>
@@ -55,7 +55,7 @@ export default {
       </div>
     </div>
 
-    <div id="lang" class="w-11/12 rounded-lg xl:w-2/5 bg-gray-50 m-auto p-4">
+    <div id="lang" class="w-11/12 rounded-lg xl:w-2/5 bg-gray-50 dark:bg-slate-600 dark:text-gray-50 m-auto p-4">
       <div class="lang_head">
         <p class="text-2xl">Languages</p>
         <i>Professional languages</i>

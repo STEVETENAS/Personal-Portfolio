@@ -1,7 +1,7 @@
 <template>
   <div id="profile_body" class="w-full min-w-[250px] bg-no-repeat bg-center bg-cover"
         :style="{ 'background-image': 'url('+'http://127.0.0.1:8000' + user.background_image + ')' }">
-    <div id="profile_bg" class="space-y-8 xl:space-y-12  backdrop-blur-sm bg-blue-400/30 py-4 text-gray-100">
+    <div id="profile_bg" class="space-y-8 xl:space-y-12  backdrop-blur-sm bg-blue-400/30 py-8 text-gray-100">
       
       <div id="searchGroup" class="w-[85%] flex justify-between m-auto items-center min-w-[250px] bg-white dark:bg-slate-600 p-2 rounded text-gray-400 dark:text-gray-200">
         <i class="fas fa-bars hover:text-black"></i>
@@ -17,12 +17,12 @@
         <img :src="'http://127.0.0.1:8000'+user.profiler_image" alt="TENAS img"
           class="rounded-full w-2/5 xl:w-1/3 m-auto border-4">
         <div class="justify-start">
-          <p class="text-3xl xl:text-2xl font-bold">{{ user.first_name }} {{ user.last_name }}</p>
+          <p class="text-2xl font-bold">{{ user.first_name }} {{ user.last_name }}</p>
           <i>{{ user.profession }}</i>
         </div>
       </div>
 
-      <i id="share" class="fas fa-paper-plane p-4 text-2xl bg-red-600 hover:bg-red-800 rounded-full fixed -bottom-8 right-4"></i>
+      <i id="share" class="fas fa-paper-plane p-4 text-lg bg-red-600 hover:bg-red-800 rounded-full fixed -bottom-8 right-4"></i>
     
     </div>
   </div>
