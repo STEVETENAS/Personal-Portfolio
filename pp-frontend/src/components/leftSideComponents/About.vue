@@ -64,13 +64,11 @@
 </template>
 
 <script>
-
 import ProfilerService from "@/services/ProfilerService";
 import aboutModal from "@/components/modalComponents/AboutModal";
 import residentModal from "@/components/modalComponents/ResidentModal";
 import telephoneModal from "@/components/modalComponents/TelephoneModal";
 import emailModal from "@/components/modalComponents/EmailModal";
-
 
 export default {
   name: "About",
