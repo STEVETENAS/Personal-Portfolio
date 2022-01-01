@@ -61,6 +61,7 @@
 
 <script>
 import profilerService from "@/services/ProfilerService";
+import Academic from "@/components/rightSideComponents/Academic";
 
 export default {
   name: "AcademicModal",
@@ -106,11 +107,11 @@ export default {
       await profilerService.apiClient.post(
           'academic',
           {
-            diploma_title: "this.Academic.diploma_description",
-            institution_attended: "this.Academic.institution_attended",
-            started_on: "this.Academic.started_on",
-            finished_on: "this.Academic.finished_on",
-            profiler_infos_id: " this.Academic.profiler_infos_id"
+            diploma_title: Academic.diploma_description,
+            institution_attended: Academic.institution_attended,
+            started_on: Academic.started_on,
+            finished_on: Academic.finished_on,
+            profiler_infos_id: Academic.profiler_infos_id
           })
           .then(function (response) {
             console.log(response);
@@ -125,7 +126,7 @@ export default {
 
 <style scoped>
 .modalContainer {
-  margin: 60% auto;
+  margin: 50% auto;
 }
 
 input {
