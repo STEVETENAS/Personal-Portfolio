@@ -26,11 +26,11 @@ class StoreProfilerAcademic extends FormRequest
     {
         return [
             'diploma_title' => 'required|string|max:50|min:2',
-            'profiler_infos_id' => ['required', 'int', new ProfilerInfoIDRule(),],
+            'profiler_infos_id' => ['required', 'numeric', new ProfilerInfoIDRule(),],
             'institution_attended' => 'required|string|max:50|min:2',
             'diploma_description' => 'required|string|max:300|min:5',
-            'started_on' => 'required|date',
-            'finished_on' => 'required|date|after:started_on',
+            'started_on' => 'required|date_format:Y-m-d',
+            'finished_on' => 'required|date_format:Y-m-d|after:started_on',
         ];
     }
 }
