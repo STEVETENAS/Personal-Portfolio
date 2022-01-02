@@ -59,12 +59,11 @@ export default {
   width: 90%;
   margin: 1% auto;
   display: grid;
+  grid-auto-columns: 35% auto;
   grid-template:
-    'profile profile rightSide rightSide rightSide'
-    'about about rightSide rightSide rightSide'
-    'about about rightSide rightSide rightSide'
-    'skills skills rightSide rightSide rightSide'
-    'skills skills rightSide rightSide rightSide';
+    'profile rightSide'
+    'about rightSide'
+    'skills  rightSide';
 }
 
 #profile {
@@ -74,7 +73,6 @@ export default {
 }
 
 #about {
-  height: 100%;
   width: 100%;
   grid-area: about;
   min-width: 270px;
@@ -107,7 +105,10 @@ export default {
 
   .grid-container {
     width: 100%;
-    display: inline-grid;
+    margin: auto;
+    padding: 0;
+    display: grid;
+    grid-auto-columns: 100%;
     grid-template:
     'profile'
     'skills'

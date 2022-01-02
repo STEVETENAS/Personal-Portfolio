@@ -61,6 +61,7 @@
 
 <script>
 import profilerService from "@/services/ProfilerService";
+import Academic from "@/components/rightSideComponents/Academic";
 
 export default {
   name: "AcademicModal",
