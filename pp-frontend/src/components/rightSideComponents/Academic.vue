@@ -28,7 +28,8 @@
     </div>
   </section>
   <teleport to="#app">
-    <academicModal v-if="isShowModal" :id="id" :acaError="acasError" :isShowModal="toggleModal"/>
+    <academicModal v-if="isShowModal" :id="id" :acaError="acaError"
+       :isShowModal="toggleModal" @newAcademic="addNewAcademicLine($event)"/>
   </teleport>
 </template>
 
@@ -44,7 +45,7 @@ export default {
   data() {
     return {
       academics: [],
-      acasError: [],
+      acaError: [],
       isShowModal: false,
       id: undefined
     }
@@ -53,19 +54,21 @@ export default {
     toggleModal(id) {
       this.id = id;
       this.isShowModal = !this.isShowModal;
+    },
+    addNewAcademicLine(newAcademic) {
+      console.log('newAcademic');
+      console.log(newAcademic);
+      this.academics.push(newAcademic);
     }
   },
   created() {
-    profilerService.getItem('academic', 'profiler_exp', 1).then(
-        response => {
-          this.academics = response.data.data;
-        }
-    )
-        .catch(
-            error => {
-              console.log(error.response);
-            }
-        )
+    profilerService.getItem('academic', 'profiler_exp', 1)
+        .then((response) => {
+          this.academics = response?.data?.data;
+        })
+        .catch((error) => {
+          console.log(error?.response?.data);
+        })
   }
 }
 </script>

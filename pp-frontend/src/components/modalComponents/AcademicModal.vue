@@ -36,8 +36,8 @@
         </div>
 
         <div class="form-group">
-          <select>
-            <option v-for="profiler in profilers" :key="profiler.id" :value="profiler.first_name">
+          <select v-model="Academic.profiler_infos_id">
+            <option v-for="(profiler, key) in profilers" :key="key" :value="profiler.id">
               {{ profiler.first_name }}
             </option>
           </select>
@@ -66,58 +66,59 @@ export default {
   name: "AcademicModal",
   props: {
     id: Number,
-    acaError: Object,
+    acaError: Array,
     isShowModal: Function
   },
   data() {
     return {
+      errors: [],
       profilers: [],
-      Academic: Object,
+      Academic: {
+        diploma_description: null,
+        institution_attended: null,
+        started_on: null,
+        finished_on: null,
+        profiler_infos_id: null,
+      },
     }
   },
   created() {
     if (this.id !== undefined) {
       profilerService.getResponse('academic', this.id)
-          .then(
-              response => {
-                this.Academic = response.data.data;
-              }
-          )
-          .catch(
-              error => {
-                console.log(error.response);
-              }
-          )
+          .then((response) => {
+            let Academic = response?.data?.data
+            console.log(Academic);
+          })
+          .catch((error) => {
+            console.log(error?.response?.data);
+          })
     }
     profilerService.getResponses('info')
-        .then(
-            response => {
-              this.profilers = response.data.data;
-            }
-        )
-        .catch(
-            error => {
-              console.log(error.response);
-            }
-        )
+        .then((response) => {
+          this.profilers = response?.data?.data;
+        })
+        .catch((error) => {
+          console.log(error?.response?.data);
+        })
   },
   methods: {
     async storeAcademic() {
-      await profilerService.apiClient.post(
-          'academic',
-          {
-            diploma_title: "this.Academic.diploma_description",
-            institution_attended: "this.Academic.institution_attended",
-            started_on: "this.Academic.started_on",
-            finished_on: "this.Academic.finished_on",
-            profiler_infos_id: " this.Academic.profiler_infos_id"
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+      this.errors = [];
+      await profilerService.apiClient.post('academic', this.Academic)
+        .then((response) => {
+          this.Academic = {
+            diploma_description: null,
+            institution_attended: null,
+            started_on: null,
+            finished_on: null,
+            profiler_infos_id: null,
+          };
+          this.isShowModal()
+          this.$emit('newAcademic', response?.data?.data);
+        }).catch((error) => {
+          console.log(error?.response?.data);
+          this.errors = error?.response?.data;
+        });
     }
   }
 }
@@ -125,7 +126,7 @@ export default {
 
 <style scoped>
 .modalContainer {
-  margin: 60% auto;
+  margin: 1rem auto;
 }
 
 input {
@@ -148,6 +149,10 @@ input {
   font-size: 2em;
 }
 
+.modalZone {
+  position: fixed;
+}
+
 @media screen and (max-width: 768px) {
   .modalZone {
     z-index: 1;
@@ -159,7 +164,7 @@ input {
   .modalContainer {
     width: 18em;
     border-radius: 20px;
-    margin: 650% auto;
+    margin: 1rem auto;
     padding: 8% 1%;
   }
 }
