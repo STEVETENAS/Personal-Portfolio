@@ -16,7 +16,8 @@
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "mehdi-fathi/eloquent-filter": "^2.5"
+        "mehdi-fathi/eloquent-filter": "^2.5",
+        "ext-mosquitto-php": "*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

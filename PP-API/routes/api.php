@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailSenderController;
 use App\Http\Controllers\ProfilerAcademicController;
 use App\Http\Controllers\ProfilerContractController;
 use App\Http\Controllers\ProfilerEmailController;
@@ -34,7 +35,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group([
     'middleware' => ['api', 'cors'],
 //    'prefix' => 'api',
-], function ($router) {
+], static function ($router) {
     Route::apiResources([
         'academic' => ProfilerAcademicController::class,
         'contract' => ProfilerContractController::class,
@@ -50,4 +51,6 @@ Route::group([
         'telephone' => ProfilerTelephoneController::class,
         'user' => UserController::class,
     ]);
+    Route::get('sendMailPDF/{email}', [MailSenderController::class, 'SendMailPDF']);
+    Route::get('sendMailIMG/{email}', [MailSenderController::class, 'SendMailIMG']);
 });
