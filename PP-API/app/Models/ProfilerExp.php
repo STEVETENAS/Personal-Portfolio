@@ -20,7 +20,7 @@ class ProfilerExp extends Model
         'company_website',
         'job_start_date',
         'job_end_date',
-        'profiler_infos_id',
+        'profiler_info_id',
     ];
 
     protected $casts = [
@@ -43,7 +43,7 @@ class ProfilerExp extends Model
             'company_website',
             'job_start_date',
             'job_end_date',
-            'profiler_infos_id',
+            'profiler_info_id',
             'created_at',
             'updated_at',
         ];

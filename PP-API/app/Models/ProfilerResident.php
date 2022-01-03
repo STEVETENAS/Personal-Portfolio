@@ -19,7 +19,7 @@ class ProfilerResident extends Model
         'country_of_residence',
         'residence_longitude',
         'residence_latitude',
-        'profiler_infos_id',
+        'profiler_info_id',
     ];
 
     protected $casts = [
@@ -41,7 +41,7 @@ class ProfilerResident extends Model
             'country_of_residence',
             'residence_longitude',
             'residence_latitude',
-            'profiler_infos_id',
+            'profiler_info_id',
             'created_at',
             'updated_at',
         ];

@@ -13,12 +13,12 @@ class CreateProfilerProjectsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiler_projects', function (Blueprint $table) {
+        Schema::create('profiler_projects', static function (Blueprint $table) {
             $table->id();
             $table->mediumText('project_title');
             $table->string('project_link');
             $table->Text('project_description');
-            $table->foreignId('profiler_infos_id');
+            $table->foreignId('profiler_info_id');
             $table->date('started_on');
             $table->date('finished_on')->nullable();
             $table->softDeletes();

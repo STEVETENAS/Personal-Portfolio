@@ -13,14 +13,14 @@ class CreateProfilerResidentsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiler_residents', function (Blueprint $table) {
+        Schema::create('profiler_residents', static function (Blueprint $table) {
             $table->id();
             $table->mediumText('place_of_residence');
             $table->mediumText('city_of_residence');
             $table->tinyText('country_of_residence');
             $table->double('residence_longitude');
             $table->double('residence_latitude');
-            $table->foreignId('profiler_infos_id');
+            $table->foreignId('profiler_info_id');
             $table->softDeletes();
             $table->timestampsTz();
         });

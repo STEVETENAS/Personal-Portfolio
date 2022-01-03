@@ -13,7 +13,7 @@ class CreateProfilerExpsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiler_exps', function (Blueprint $table) {
+        Schema::create('profiler_exps', static function (Blueprint $table) {
             $table->id();
             $table->tinyText('job_title');
             $table->mediumText('job_description');
@@ -21,7 +21,7 @@ class CreateProfilerExpsTable extends Migration
             $table->mediumText('company_website')->nullable();
             $table->date('job_start_date');
             $table->date('job_end_date')->nullable();
-            $table->foreignId('profiler_infos_id');
+            $table->foreignId('profiler_info_id');
             $table->softDeletes();
             $table->timestampsTz();
         });

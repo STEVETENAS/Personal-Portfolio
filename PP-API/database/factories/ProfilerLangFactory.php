@@ -18,7 +18,7 @@ class ProfilerLangFactory extends Factory
         return [
             'language' => $this->faker->languageCode,
             'language_level' => $this->faker->numberBetween(1, 10),
-            'profiler_infos_id' => $this->faker->randomElement($profilerIDs),
+            'profiler_info_id' => $this->faker->randomElement($profilerIDs),
         ];
     }
 }

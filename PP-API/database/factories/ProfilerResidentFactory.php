@@ -21,7 +21,7 @@ class ProfilerResidentFactory extends Factory
             'country_of_residence' => $this->faker->country,
             'residence_longitude' => $this->faker->longitude,
             'residence_latitude' => $this->faker->latitude,
-            'profiler_infos_id' => $this->faker->randomElement($profilerIDs),
+            'profiler_info_id' => $this->faker->randomElement($profilerIDs),
         ];
     }
 }

@@ -16,7 +16,7 @@ class ProfilerLang extends Model
     protected $fillable = [
         'language',
         'language_level',
-        'profiler_infos_id',
+        'profiler_info_id',
     ];
 
     protected $casts = [
@@ -35,7 +35,7 @@ class ProfilerLang extends Model
         return [
             'language',
             'language_level',
-            'profiler_infos_id',
+            'profiler_info_id',
             'created_at',
             'updated_at',
         ];

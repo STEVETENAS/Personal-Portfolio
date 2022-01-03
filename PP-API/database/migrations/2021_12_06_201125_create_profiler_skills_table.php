@@ -13,12 +13,12 @@ class CreateProfilerSkillsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiler_skills', function (Blueprint $table) {
+        Schema::create('profiler_skills', static function (Blueprint $table) {
             $table->id();
             $table->tinyText('skill_title');
             $table->tinyInteger('skill_level');
             $table->mediumText('skill_description');
-            $table->foreignId('profiler_infos_id');
+            $table->foreignId('profiler_info_id');
             $table->softDeletes();
             $table->timestampsTz();
         });

@@ -16,7 +16,7 @@ class ProfilerContract extends Model
     protected $fillable = [
         'contract_type',
         'contract_description',
-        'profiler_infos_id',
+        'profiler_info_id',
         'started_on',
         'finished_on',
     ];
@@ -37,7 +37,7 @@ class ProfilerContract extends Model
         return [
             'contract_type',
             'contract_description',
-            'profiler_infos_id',
+            'profiler_info_id',
             'started_on',
             'finished_on',
             'created_at',

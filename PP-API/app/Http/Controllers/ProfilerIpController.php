@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProfilerIp;
-use App\Http\Requests\UpdateProfilerIp;
+use App\Http\Requests\ProfilerIpRequest;
 use App\Http\Resources\profilerIpResource;
 use App\Models\ProfilerIp;
 use Illuminate\Http\JsonResponse;
@@ -30,11 +29,11 @@ class ProfilerIpController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreprofilerIp $request
+     * @param ProfilerIpRequest $request
      * @return profilerIpResource
      * @throws Exception
      */
-    public function store(StoreProfilerIp $request): profilerIpResource
+    public function store(ProfilerIpRequest $request): profilerIpResource
     {
         $input = $request->all();
 
@@ -42,16 +41,16 @@ class ProfilerIpController extends Controller
             $ipImageName = $request->file('ip_img')->getClientOriginalName();
             [$width, $height] = getimagesize($request->file('ip_img'));
             $date = date('Y-m-d');
-            $id = uniqid('', true);
-            $ipImagePath = "public/images/ips_images/{$date}-{$id}-{$width}-{$height}";
-            $input['ip_img'] = $request->file('ip_img')->storeAs($ipImagePath,$ipImageName);
+            $unique = uniqid('', true);
+            $ipImagePath = "public/images/ips_images/$date-$unique-$width-$height";
+            $input['ip_img'] = $request->file('ip_img')->storeAs($ipImagePath, $ipImageName);
         }
 
-        $ip = profilerIp::create($input);
-        if ($ip) {
-            return new profilerIpResource($ip);
+        $ip = new profilerIp($input);
+        if (!$ip->save()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return new profilerIpResource($ip);
     }
 
     /**
@@ -60,9 +59,9 @@ class ProfilerIpController extends Controller
      * @param int $id
      * @return JsonResponse|profilerIpResource
      */
-    public function show($id): JsonResponse|profilerIpResource
+    public function show(int $id): JsonResponse|profilerIpResource
     {
-        $ip = profilerIp::find($id);
+        $ip = profilerIp::query()->find($id);
         if (!$ip) {
             return response()->json(['error' => 'Unrecognised ID'], 400);
         }
@@ -72,12 +71,12 @@ class ProfilerIpController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateprofilerIp $request
+     * @param ProfilerIpRequest $request
      * @param int $id
      * @return profilerIpResource
      * @throws Exception
      */
-    public function update(UpdateprofilerIp $request, $id): profilerIpResource
+    public function update(ProfilerIpRequest $request, int $id): profilerIpResource
     {
         $input = $request->all();
 
@@ -85,17 +84,17 @@ class ProfilerIpController extends Controller
             $ipImageName = $request->file('ip_img')->getClientOriginalName();
             [$width, $height] = getimagesize($request->file('ip_img'));
             $date = date('Y-m-d');
-            $id = uniqid('', true);
-            $ipImagePath = "images/ips_images/{$date}-{$ipImageName}-{$id}-{$width}-{$height}";
-            $input['ip_img'] = $request->file('ip_img')->store($ipImagePath);
+            $unique = uniqid('', true);
+            $ipImagePath = "images/ips_images/$date-$ipImageName-$unique-$width-$height";
+            $input['ip_img'] = $request->file('ip_img')->storeAs($ipImagePath, $ipImageName);
         }
 
-        $ip = profilerIp::create($input);
-        if ($ip->update($request->all())) {
-            $ip->flash();
-            return new profilerIpResource($ip);
+        $ip = new profilerIp($input);
+        if (!$ip->update($request->all())) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        $ip->refresh();
+        return new profilerIpResource($ip);
     }
 
     /**
@@ -105,48 +104,13 @@ class ProfilerIpController extends Controller
      * @return array
      * @throws Exception
      */
-    #[ArrayShape(['data' => "mixed"])]
-    public function destroy($id): array
+    #[ArrayShape(['Deleted-data' => "mixed"])]
+    public function destroy(int $id): array
     {
-        $ip = profilerIp::find($id);
-        if ($ip->delete()) {
-            return ['Deleted-data' => $ip->id];
+        $ip = profilerIp::query()->find($id);
+        if (!$ip->delete()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return ['Deleted-data' => $ip];
     }
 }
-//$query = profilerIp::query();
-//$size = $request->query('size');
-//$ips = $query->get();
-//if ($request->query('id')) {
-//    $ips = profilerIp::find($request->query('id'));
-//}
-//if ($request->query('ip_name')) {
-//    $ips = $query
-//        ->where('ip_name', 'like','%'.$request->query('ip_name').'%')
-//        ->get();
-//}
-//if ($request->query('ip_description')) {
-//    $ips = $query
-//        ->where('ip_description', 'like','%'.$request->query('ip_description').'%')
-//        ->get();
-//}
-//if ($request->query('profiler_infos_id')) {
-//    $ips = $query
-//        ->where('profiler_infos_id', 'like',$request->query('profiler_infos_id'))
-//        ->get();
-//}
-//if ($request->query('created_at')) {
-//    $ips = $query
-//        ->where('created_at', 'like','%'.$request->query('created_at').'%')
-//        ->get();
-//}
-//if ($request->query('updated_at')) {
-//    $ips = $query
-//        ->where('updated_at', 'like','%'.$request->query('updated_at').'%')
-//        ->get();
-//}
-//if ($size) {
-//    $ips = $query->paginate($size);
-//}
-//return profilerIpResource::collection($ips);

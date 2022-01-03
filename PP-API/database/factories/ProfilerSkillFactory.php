@@ -19,7 +19,7 @@ class ProfilerSkillFactory extends Factory
             'skill_title' => $this->faker->name,
             'skill_level' => $this->faker->numberBetween(50, 100),
             'skill_description' => $this->faker->realText(300),
-            'profiler_infos_id' => $this->faker->randomElement($profilerIDs),
+            'profiler_info_id' => $this->faker->randomElement($profilerIDs),
         ];
     }
 }

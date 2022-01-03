@@ -22,7 +22,7 @@ class ProfilerAcademicFactory extends Factory
             'institution_attended' => $this->faker->name,
             'started_on' => $this->faker->date,
             'finished_on' => $this->faker->date,
-            'profiler_infos_id' => $this->faker->randomElement($profilerIDs),
+            'profiler_info_id' => $this->faker->randomElement($profilerIDs),
         ];
     }
 }

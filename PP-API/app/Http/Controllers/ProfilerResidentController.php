@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProfilerResident;
-use App\Http\Requests\UpdateProfilerResident;
+use App\Http\Requests\ProfilerResidentRequest;
 use App\Http\Resources\profilerResidentResource;
 use App\Models\ProfilerResident;
 use Illuminate\Http\JsonResponse;
@@ -30,17 +29,17 @@ class ProfilerResidentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreprofilerResident $request
+     * @param ProfilerResidentRequest $request
      * @return profilerResidentResource
      * @throws Exception
      */
-    public function store(StoreprofilerResident $request): profilerResidentResource
+    public function store(ProfilerResidentRequest $request): profilerResidentResource
     {
-        $resident = profilerResident::create($request->all());
-        if ($resident) {
-            return new profilerResidentResource($resident);
+        $resident = new profilerResident($request->all());
+        if (!$resident->save()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return new profilerResidentResource($resident);
     }
 
     /**
@@ -49,9 +48,9 @@ class ProfilerResidentController extends Controller
      * @param int $id
      * @return JsonResponse|profilerResidentResource
      */
-    public function show($id): JsonResponse|profilerResidentResource
+    public function show(int $id): JsonResponse|profilerResidentResource
     {
-        $resident = profilerResident::find($id);
+        $resident = profilerResident::query()->find($id);
         if (!$resident) {
             return response()->json(['error' => 'Unrecognised ID'], 400);
         }
@@ -61,19 +60,19 @@ class ProfilerResidentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateprofilerResident $request
+     * @param ProfilerResidentRequest $request
      * @param int $id
      * @return profilerResidentResource
      * @throws Exception
      */
-    public function update(UpdateprofilerResident $request, $id): profilerResidentResource
+    public function update(ProfilerResidentRequest $request, int $id): profilerResidentResource
     {
-        $resident = profilerResident::find($id);
+        $resident = profilerResident::query()->find($id);
         if ($resident->update($request->all())) {
-            $resident->flash();
-            return new profilerResidentResource($resident);
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        $resident->refresh();
+        return new profilerResidentResource($resident);
     }
 
     /**
@@ -83,13 +82,13 @@ class ProfilerResidentController extends Controller
      * @return array
      * @throws Exception
      */
-    #[ArrayShape(['data' => "mixed"])]
-    public function destroy($id): array
+    #[ArrayShape(['Deleted-data' => "mixed"])]
+    public function destroy(int $id): array
     {
-        $resident = profilerResident::find($id);
-        if ($resident->delete()) {
-            return ['Deleted-data' => $resident->id];
+        $resident = profilerResident::query()->find($id);
+        if (!$resident->delete()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return ['Deleted-data' => $resident];
     }
 }

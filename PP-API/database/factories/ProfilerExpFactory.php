@@ -22,7 +22,7 @@ class ProfilerExpFactory extends Factory
             'company_website' => $this->faker->domainName,
             'job_start_date' => $this->faker->date,
             'job_end_date' => $this->faker->date,
-            'profiler_infos_id' => $this->faker->randomElement($profilerIDs),
+            'profiler_info_id' => $this->faker->randomElement($profilerIDs),
         ];
     }
 }

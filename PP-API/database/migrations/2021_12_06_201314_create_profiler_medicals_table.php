@@ -13,11 +13,11 @@ class CreateProfilerMedicalsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiler_medicals', function (Blueprint $table) {
+        Schema::create('profiler_medicals', static function (Blueprint $table) {
             $table->id();
             $table->mediumText('medical_status');
             $table->Text('medical_description')->nullable();
-            $table->foreignId('profiler_infos_id');
+            $table->foreignId('profiler_info_id');
             $table->softDeletes();
             $table->timestampsTz();
         });

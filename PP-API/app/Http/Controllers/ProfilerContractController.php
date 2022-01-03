@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProfilerContract;
-use App\Http\Requests\UpdateProfilerContract;
+use App\Http\Requests\ProfilerAcademicRequest;
 use App\Http\Resources\profilerContractResource;
 use App\Models\ProfilerContract;
 use Illuminate\Http\JsonResponse;
@@ -30,17 +29,17 @@ class ProfilerContractController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreProfilerContract $request
+     * @param ProfilerAcademicRequest $request
      * @return profilerContractResource
      * @throws Exception
      */
-    public function store(StoreprofilerContract $request): profilerContractResource
+    public function store(ProfilerAcademicRequest $request): profilerContractResource
     {
-        $contract = profilerContract::create($request->all());
-        if ($contract) {
-            return new profilerContractResource($contract);
+        $contract = new profilerContract($request->all());
+        if (!$contract->save()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return new profilerContractResource($contract);
     }
 
     /**
@@ -49,9 +48,9 @@ class ProfilerContractController extends Controller
      * @param int $id
      * @return JsonResponse|profilerContractResource
      */
-    public function show($id): JsonResponse|profilerContractResource
+    public function show(int $id): JsonResponse|profilerContractResource
     {
-        $contract = profilerContract::find($id);
+        $contract = profilerContract::query()->find($id);
         if (!$contract) {
             return response()->json(['error' => 'Unrecognised ID'], 400);
         }
@@ -61,19 +60,19 @@ class ProfilerContractController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateProfilerContract $request
+     * @param ProfilerAcademicRequest $request
      * @param int $id
      * @return profilerContractResource
      * @throws Exception
      */
-    public function update(UpdateProfilerContract $request, $id): profilerContractResource
+    public function update(ProfilerAcademicRequest $request, int $id): profilerContractResource
     {
-        $contract = profilerContract::find($id);
-        if ($contract->update($request->all())) {
-            $contract->flash();
-            return new profilerContractResource($contract);
+        $contract = profilerContract::query()->find($id);
+        if (!$contract->update($request->all())) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        $contract->refresh();
+        return new profilerContractResource($contract);
     }
 
     /**
@@ -83,13 +82,13 @@ class ProfilerContractController extends Controller
      * @return array
      * @throws Exception
      */
-    #[ArrayShape(['data' => "mixed"])]
-    public function destroy($id): array
+    #[ArrayShape(['Deleted-data' => "mixed"])]
+    public function destroy(int $id): array
     {
-        $contract = profilerContract::find($id);
-        if ($contract->delete()) {
-            return ['Deleted-data' => $contract->id];
+        $contract = profilerContract::query()->find($id);
+        if (!$contract->delete()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return ['Deleted-data' => $contract];
     }
 }

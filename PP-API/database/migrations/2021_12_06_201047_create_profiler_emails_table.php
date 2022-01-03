@@ -13,11 +13,11 @@ class CreateProfilerEmailsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiler_emails', function (Blueprint $table) {
+        Schema::create('profiler_emails', static function (Blueprint $table) {
             $table->id();
             $table->mediumText('profiler_email');
             $table->mediumText('email_description');
-            $table->foreignId('profiler_infos_id');
+            $table->foreignId('profiler_info_id');
             $table->softDeletes();
             $table->timestampsTz();
         });

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,7 +21,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'profiler_infos_id',
     ];
 
     /**
@@ -47,17 +45,12 @@ class User extends Authenticatable
         'deleted_at' => 'datetime:U',
     ];
 
-    public function profilerInfos(): BelongsTo
-    {
-        return $this->belongsTo(profilerInfo::class);
-    }
-
     public function userAttributes(): array
     {
         return [
             'name',
             'email',
-            'profiler_infos_id',
+            'profiler_info_id',
             'created_at',
             'updated_at',
         ];

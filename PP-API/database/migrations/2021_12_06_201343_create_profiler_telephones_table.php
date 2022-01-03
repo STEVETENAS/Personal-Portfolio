@@ -13,11 +13,11 @@ class CreateProfilerTelephonesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiler_telephones', function (Blueprint $table) {
+        Schema::create('profiler_telephones', static function (Blueprint $table) {
             $table->id();
             $table->tinyText('profiler_phone_number');
             $table->mediumText('phone_number_description');
-            $table->foreignId('profiler_infos_id');
+            $table->foreignId('profiler_info_id');
             $table->softDeletes();
             $table->timestampsTz();
         });

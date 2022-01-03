@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProfilerInfo extends FormRequest
+class ProfilerInfoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +23,30 @@ class UpdateProfilerInfo extends FormRequest
      */
     public function rules(): array
     {
+        if (in_array($this->method(), ['PUT', 'PATCH'])) {
+            return [
+                'first_name' => 'required|string|max:50|min:2|sometimes',
+                'last_name' => 'required|string|max:50|min:2|sometimes',
+                'profession' => 'required|string|max:50|min:2|sometimes',
+                'gender' => 'required|string|max:10|min:4|sometimes',
+                'place_of_birth' => 'required|string|max:30|min:2|sometimes',
+                'place_of_origin' => 'required|string|max:30|min:2|sometimes',
+                'date_of_birth' => 'required|sometimes',
+                'number_of_children' => 'required|int|sometimes',
+                'married' => 'required|bool|sometimes',
+                'profiler_image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|sometimes',
+                'background_image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|sometimes',
+            ];
+        }
+
         return [
-            'first_name' => 'required|string|max:50|min:2' . $this->profiler_info,
+            'first_name' => 'required|string|max:50|min:2',
             'last_name' => 'required|string|max:50|min:2',
             'profession' => 'required|string|max:50|min:2',
             'gender' => 'required|string|max:10|min:4',
             'place_of_birth' => 'required|string|max:30|min:2',
             'place_of_origin' => 'required|string|max:30|min:2',
             'date_of_birth' => 'required',
-            'job_end_date' => 'required',
-            'profiler_infos_id' => 'required',
-            'job_description' => 'required|string|max:300|min:5',
             'number_of_children' => 'required|int',
             'married' => 'required|bool',
             'profiler_image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',

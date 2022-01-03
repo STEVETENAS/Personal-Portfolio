@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProfilerExp;
-use App\Http\Requests\UpdateProfilerExp;
+use App\Http\Requests\ProfilerExpRequest;
 use App\Http\Resources\profilerExpResource;
 use App\Models\ProfilerExp;
 use Illuminate\Http\JsonResponse;
@@ -30,17 +29,17 @@ class ProfilerExpController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreProfilerExp $request
+     * @param ProfilerExpRequest $request
      * @return profilerExpResource
      * @throws Exception
      */
-    public function store(StoreprofilerExp $request): profilerExpResource
+    public function store(ProfilerExpRequest $request): profilerExpResource
     {
-        $exp = profilerExp::create($request->all());
-        if ($exp) {
-            return new profilerExpResource($exp);
+        $exp = new ProfilerExp($request->all());
+        if (!$exp->save()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return new profilerExpResource($exp);
     }
 
     /**
@@ -49,9 +48,9 @@ class ProfilerExpController extends Controller
      * @param int $id
      * @return JsonResponse|profilerExpResource
      */
-    public function show($id): JsonResponse|profilerExpResource
+    public function show(int $id): JsonResponse|profilerExpResource
     {
-        $exp = profilerExp::find($id);
+        $exp = profilerExp::query()->find($id);
         if (!$exp) {
             return response()->json(['error' => 'Unrecognised ID'], 400);
         }
@@ -61,19 +60,19 @@ class ProfilerExpController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateProfilerExp $request
+     * @param ProfilerExpRequest $request
      * @param int $id
      * @return profilerExpResource
      * @throws Exception
      */
-    public function update(UpdateprofilerExp $request, $id): profilerExpResource
+    public function update(ProfilerExpRequest $request, int $id): profilerExpResource
     {
-        $exp = profilerExp::find($id);
+        $exp = profilerExp::query()->find($id);
         if ($exp->update($request->all())) {
-            $exp->flash();
-            return new profilerExpResource($exp);
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        $exp->refresh();
+        return new profilerExpResource($exp);
     }
 
     /**
@@ -83,13 +82,13 @@ class ProfilerExpController extends Controller
      * @return array
      * @throws Exception
      */
-    #[ArrayShape(['data' => "mixed"])]
-    public function destroy($id): array
+    #[ArrayShape(['Deleted-data' => "mixed"])]
+    public function destroy(int $id): array
     {
-        $exp = profilerExp::find($id);
+        $exp = profilerExp::query()->find($id);
         if ($exp->delete()) {
-            return ['Deleted-data' => $exp->id];
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return ['Deleted-data' => $exp];
     }
 }

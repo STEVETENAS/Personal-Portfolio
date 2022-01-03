@@ -16,7 +16,7 @@ class ProfilerTelephone extends Model
     protected $fillable = [
         'profiler_phone_number',
         'phone_number_description',
-        'profiler_infos_id',
+        'profiler_info_id',
     ];
 
     protected $casts = [
@@ -35,7 +35,7 @@ class ProfilerTelephone extends Model
         return [
             'profiler_phone_number',
             'phone_number_description',
-            'profiler_infos_id',
+            'profiler_info_id',
             'created_at',
             'updated_at',
         ];

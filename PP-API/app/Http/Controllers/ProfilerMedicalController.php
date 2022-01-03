@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProfilerMedical;
-use App\Http\Requests\UpdateProfilerMedical;
+use App\Http\Requests\ProfilerMedicalRequest;
 use App\Http\Resources\profilerMedicalResource;
 use App\Models\ProfilerMedical;
 use Illuminate\Http\JsonResponse;
@@ -30,17 +29,17 @@ class ProfilerMedicalController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreprofilerMedical $request
+     * @param ProfilerMedicalRequest $request
      * @return profilerMedicalResource
      * @throws Exception
      */
-    public function store(StoreprofilerMedical $request): profilerMedicalResource
+    public function store(ProfilerMedicalRequest $request): profilerMedicalResource
     {
-        $medical = profilerMedical::create($request->all());
-        if ($medical) {
-            return new profilerMedicalResource($medical);
+        $medical = new profilerMedical($request->all());
+        if (!$medical->save()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return new profilerMedicalResource($medical);
     }
 
     /**
@@ -49,9 +48,9 @@ class ProfilerMedicalController extends Controller
      * @param int $id
      * @return JsonResponse|profilerMedicalResource
      */
-    public function show($id): JsonResponse|profilerMedicalResource
+    public function show(int $id): JsonResponse|profilerMedicalResource
     {
-        $medical = profilerMedical::find($id);
+        $medical = profilerMedical::query()->find($id);
         if (!$medical) {
             return response()->json(['error' => 'Unrecognised ID'], 400);
         }
@@ -61,19 +60,19 @@ class ProfilerMedicalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateprofilerMedical $request
+     * @param ProfilerMedicalRequest $request
      * @param int $id
      * @return profilerMedicalResource
      * @throws Exception
      */
-    public function update(UpdateprofilerMedical $request, $id): profilerMedicalResource
+    public function update(ProfilerMedicalRequest $request, int $id): profilerMedicalResource
     {
-        $medical = profilerMedical::find($id);
-        if ($medical->update($request->all())) {
-            $medical->flash();
-            return new profilerMedicalResource($medical);
+        $medical = profilerMedical::query()->find($id);
+        if (!$medical->update($request->all())) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        $medical->refresh();
+        return new profilerMedicalResource($medical);
     }
 
     /**
@@ -83,13 +82,13 @@ class ProfilerMedicalController extends Controller
      * @return array
      * @throws Exception
      */
-    #[ArrayShape(['data' => "mixed"])]
-    public function destroy($id): array
+    #[ArrayShape(['Deleted-data' => "mixed"])]
+    public function destroy(int $id): array
     {
-        $medical = profilerMedical::find($id);
-        if ($medical->delete()) {
-            return ['Deleted-data' => $medical->id];
+        $medical = profilerMedical::query()->find($id);
+        if (!$medical->delete()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return ['Deleted-data' => $medical];
     }
 }

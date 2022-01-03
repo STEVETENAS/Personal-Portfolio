@@ -19,7 +19,7 @@ class ProfilerProjectFactory extends Factory
             'project_title' => $this->faker->name,
             'project_link' => $this->faker->domainName,
             'project_description' => $this->faker->realText(300),
-            'profiler_infos_id' => $this->faker->randomElement($profilerIDs),
+            'profiler_info_id' => $this->faker->randomElement($profilerIDs),
             'started_on' => $this->faker->date,
             'finished_on' => $this->faker->date,
         ];

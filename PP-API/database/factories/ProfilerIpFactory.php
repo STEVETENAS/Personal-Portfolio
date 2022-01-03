@@ -21,7 +21,7 @@ class ProfilerIpFactory extends Factory
             'ip_name' => $this->faker->sentence,
             'ip_description' => $this->faker->realText(300),
             'ip_img' => $this->faker->randomElement($ip_images),
-            'profiler_infos_id' => $this->faker->randomElement($profilerIDs),
+            'profiler_info_id' => $this->faker->randomElement($profilerIDs),
         ];
     }
 }

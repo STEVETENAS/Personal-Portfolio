@@ -18,7 +18,7 @@ class ProfilerTelephoneFactory extends Factory
         return [
             'profiler_phone_number' => $this->faker->phoneNumber,
             'phone_number_description' => $this->faker->realText(100),
-            'profiler_infos_id' => $this->faker->randomElement($profilerIDs),
+            'profiler_info_id' => $this->faker->randomElement($profilerIDs),
         ];
     }
 }

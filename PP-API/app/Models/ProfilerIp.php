@@ -17,7 +17,7 @@ class ProfilerIp extends Model
         'ip_name',
         'ip_description',
         'ip_img',
-        'profiler_infos_id',
+        'profiler_info_id',
     ];
 
     protected $casts = [
@@ -36,7 +36,7 @@ class ProfilerIp extends Model
         return [
             'ip_name',
             'ip_description',
-            'profiler_infos_id',
+            'profiler_info_id',
             'created_at',
             'updated_at',
         ];

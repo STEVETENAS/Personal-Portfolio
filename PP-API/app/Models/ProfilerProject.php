@@ -17,7 +17,7 @@ class ProfilerProject extends Model
         'project_title',
         'project_link',
         'project_description',
-        'profiler_infos_id',
+        'profiler_info_id',
         'started_on',
         'finished_on',
     ];
@@ -39,7 +39,7 @@ class ProfilerProject extends Model
             'project_title',
             'project_link',
             'project_description',
-            'profiler_infos_id',
+            'profiler_info_id',
             'created_at',
             'updated_at',
             'started_on',

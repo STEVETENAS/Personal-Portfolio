@@ -17,7 +17,7 @@ class ProfilerSkill extends Model
         'skill_title',
         'skill_level',
         'skill_description',
-        'profiler_infos_id',
+        'profiler_info_id',
     ];
 
     protected $casts = [
@@ -37,7 +37,7 @@ class ProfilerSkill extends Model
             'skill_title',
             'skill_level',
             'skill_description',
-            'profiler_infos_id',
+            'profiler_info_id',
             'created_at',
             'updated_at',
         ];

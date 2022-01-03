@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProfilerLang;
-use App\Http\Requests\UpdateProfilerLang;
+use App\Http\Requests\ProfilerLangRequest;
 use App\Http\Resources\profilerLangResource;
 use App\Models\ProfilerLang;
 use Illuminate\Http\JsonResponse;
@@ -30,17 +29,17 @@ class ProfilerLangController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreprofilerLang $request
+     * @param ProfilerLangRequest $request
      * @return profilerLangResource
      * @throws Exception
      */
-    public function store(StoreprofilerLang $request): profilerLangResource
+    public function store(ProfilerLangRequest $request): profilerLangResource
     {
-        $lang = profilerLang::create($request->all());
-        if ($lang) {
-            return new profilerLangResource($lang);
+        $lang = new profilerLang($request->all());
+        if (!$lang->save()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return new profilerLangResource($lang);
     }
 
     /**
@@ -49,9 +48,9 @@ class ProfilerLangController extends Controller
      * @param int $id
      * @return JsonResponse|profilerLangResource
      */
-    public function show($id): JsonResponse|profilerLangResource
+    public function show(int $id): JsonResponse|profilerLangResource
     {
-        $lang = profilerLang::find($id);
+        $lang = profilerLang::query()->find($id);
         if (!$lang) {
             return response()->json(['error' => 'Unrecognised ID'], 400);
         }
@@ -61,19 +60,19 @@ class ProfilerLangController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateprofilerLang $request
+     * @param ProfilerLangRequest $request
      * @param int $id
      * @return profilerLangResource
      * @throws Exception
      */
-    public function update(UpdateprofilerLang $request, $id): profilerLangResource
+    public function update(ProfilerLangRequest $request, int $id): profilerLangResource
     {
-        $lang = profilerLang::find($id);
-        if ($lang->update($request->all())) {
-            $lang->flash();
-            return new profilerLangResource($lang);
+        $lang = profilerLang::query()->find($id);
+        if (!$lang->update($request->all())) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        $lang->refresh();
+        return new profilerLangResource($lang);
     }
 
     /**
@@ -83,13 +82,13 @@ class ProfilerLangController extends Controller
      * @return array
      * @throws Exception
      */
-    #[ArrayShape(['data' => "mixed"])]
-    public function destroy($id): array
+    #[ArrayShape(['Deleted-data' => "mixed"])]
+    public function destroy(int $id): array
     {
-        $lang = profilerLang::find($id);
-        if ($lang->delete()) {
-            return ['Deleted-data' => $lang];
+        $lang = profilerLang::query()->find($id);
+        if (!$lang->delete()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return ['Deleted-data' => $lang];
     }
 }

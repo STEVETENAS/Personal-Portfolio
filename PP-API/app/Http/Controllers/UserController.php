@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUser;
-use App\Http\Requests\UpdateUser;
+use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -30,14 +29,14 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreUser $request
+     * @param UserRequest $request
      * @return UserResource
      * @throws Exception
      */
-    public function store(StoreUser $request): UserResource
+    public function store(UserRequest $request): UserResource
     {
-        $user = User::create($request->all());
-        if ($user) {
+        $user = new User($request->all());
+        if (!$user->save()) {
             return new UserResource($user);
         }
         throw new Exception('Unexpected Error');
@@ -49,9 +48,9 @@ class UserController extends Controller
      * @param int $id
      * @return JsonResponse|UserResource
      */
-    public function show($id): JsonResponse|UserResource
+    public function show(int $id): JsonResponse|UserResource
     {
-        $user = User::find($id);
+        $user = User::query()->find($id);
         if (!$user) {
             return response()->json(['error' => 'Unrecognised ID'], 400);
         }
@@ -61,16 +60,16 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateUser $request
+     * @param UserRequest $request
      * @param int $id
      * @return UserResource
      * @throws Exception
      */
-    public function update(UpdateUser $request, $id): UserResource
+    public function update(UserRequest $request, int $id): UserResource
     {
-        $user = User::find($id);
+        $user = User::query()->find($id);
         if ($user->update($request->all())) {
-            $user->flash();
+            $user->refresh();
             return new UserResource($user);
         }
         throw new Exception('Unexpected Error');
@@ -83,13 +82,13 @@ class UserController extends Controller
      * @return array
      * @throws Exception
      */
-    #[ArrayShape(['data' => "mixed"])]
-    public function destroy($id): array
+    #[ArrayShape(['Deleted-data' => "mixed"])]
+    public function destroy(int $id): array
     {
-        $user = User::find($id);
-        if ($user->delete()) {
-            return ['Deleted-data' => $user->id];
+        $user = User::query()->find($id);
+        if (!$user->delete()) {
+            throw new Exception('Unexpected Error');
         }
-        throw new Exception('Unexpected Error');
+        return ['Deleted-data' => $user];
     }
 }

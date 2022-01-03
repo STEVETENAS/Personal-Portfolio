@@ -18,7 +18,7 @@ class ProfilerEmailFactory extends Factory
         return [
             'profiler_email' => $this->faker->email,
             'email_description' => $this->faker->realText(300),
-            'profiler_infos_id' => $this->faker->randomElement($profilerIDs),
+            'profiler_info_id' => $this->faker->randomElement($profilerIDs),
         ];
     }
 }

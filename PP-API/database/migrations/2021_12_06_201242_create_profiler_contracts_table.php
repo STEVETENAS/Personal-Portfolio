@@ -13,11 +13,11 @@ class CreateProfilerContractsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiler_contracts', function (Blueprint $table) {
+        Schema::create('profiler_contracts', static function (Blueprint $table) {
             $table->id();
             $table->tinyText('contract_type');
             $table->Text('contract_description');
-            $table->foreignId('profiler_infos_id');
+            $table->foreignId('profiler_info_id');
             $table->date('started_on');
             $table->date('finished_on');
             $table->softDeletes();

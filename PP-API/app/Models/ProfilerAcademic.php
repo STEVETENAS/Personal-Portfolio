@@ -17,7 +17,7 @@ class ProfilerAcademic extends Model
         'diploma_title',
         'diploma_description',
         'institution_attended',
-        'profiler_infos_id',
+        'profiler_info_id',
         'started_on',
         'finished_on',
     ];
@@ -39,7 +39,7 @@ class ProfilerAcademic extends Model
             'diploma_title',
             'diploma_description',
             'institution_attended',
-            'profiler_infos_id',
+            'profiler_info_id',
             'started_on',
             'finished_on',
             'created_at',

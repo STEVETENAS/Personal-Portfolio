@@ -16,7 +16,7 @@ class ProfilerMedical extends Model
     protected $fillable = [
         'medical_status',
         'medical_description',
-        'profiler_infos_id',
+        'profiler_info_id',
     ];
 
     protected $casts = [
@@ -35,7 +35,7 @@ class ProfilerMedical extends Model
         return [
             'medical_status',
             'medical_description',
-            'profiler_infos_id',
+            'profiler_info_id',
             'created_at',
             'updated_at',
         ];

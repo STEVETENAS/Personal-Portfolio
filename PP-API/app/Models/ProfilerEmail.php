@@ -16,7 +16,7 @@ class ProfilerEmail extends Model
     protected $fillable = [
         'profiler_email',
         'email_description',
-        'profiler_infos_id',
+        'profiler_info_id',
     ];
 
     protected $casts = [
@@ -35,7 +35,7 @@ class ProfilerEmail extends Model
         return [
             'profiler_email',
             'email_description',
-            'profiler_infos_id',
+            'profiler_info_id',
             'created_at',
             'updated_at',
         ];
