@@ -8,6 +8,7 @@ use App\Models\ProfilerInfo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\File;
 use JetBrains\PhpStorm\ArrayShape;
 use Mosquitto\Exception;
 
@@ -85,18 +86,31 @@ class ProfilerInfoController extends Controller
      */
     public function update(ProfilerInfoRequest $request, int $id): profilerInfoResource
     {
+        $info = profilerInfo::query()->find($id);
         $input = $request->all();
 
-        if ($request->hasFile('ip_img')) {
-            $ipImageName = $request->file('ip_img')->getClientOriginalName();
-            [$width, $height] = getimagesize($request->file('ip_img'));
-            $date = date('Y-m-d');
-            $unique = uniqid('', true);
-            $ipImagePath = "public/images/ips_images/$date-$unique-$width-$height";
-            $input['ip_img'] = $request->file('ip_img')->storeAs($ipImagePath, $ipImageName);
+        if (!$request->hasFile('profiler_image')) {
+            if (File::exists($info['profiler_images'])) {
+                File::delete($info['profiler_images']);
+            }
+            $profilerImageName = $request->file('profiler_image') ? $request->file('profiler_image')->getClientOriginalName() : null;
+            $unique = uniqid('', false);
+            $profilerImagePath = "images/profiler_images/" . time() . "-$unique/";
+            $request->file('profiler_image')->move($profilerImagePath, $profilerImageName);
+            $input['profiler_image'] = $profilerImagePath . $profilerImageName;
         }
 
-        $info = profilerInfo::query()->find($id);
+        if ($request->hasFile('background_image')) {
+            if (File::exists($info['profiler_images'])) {
+                File::delete($info['background_image']);
+            }
+            $bgImageName = $request->file('background_image') ? $request->file('background_image')->getClientOriginalName() : null;
+            $unique = uniqid('', false);
+            $bgImagePath = "images/bg_images/" . time() . "-$unique/";
+            $request->file('background_image')->move($bgImagePath, $bgImageName);
+            $input['background_image'] = $bgImagePath . $bgImageName;
+        }
+
         if (!$info->update($request->all())) {
             throw new Exception('Unexpected Error');
         }

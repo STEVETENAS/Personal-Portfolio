@@ -8,6 +8,7 @@ use App\Models\ProfilerIp;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\File;
 use JetBrains\PhpStorm\ArrayShape;
 use Mosquitto\Exception;
 
@@ -38,12 +39,11 @@ class ProfilerIpController extends Controller
         $input = $request->all();
 
         if ($request->hasFile('ip_img')) {
-            $ipImageName = $request->file('ip_img')->getClientOriginalName();
-            [$width, $height] = getimagesize($request->file('ip_img'));
-            $date = date('Y-m-d');
-            $unique = uniqid('', true);
-            $ipImagePath = "public/images/ips_images/$date-$unique-$width-$height";
-            $input['ip_img'] = $request->file('ip_img')->storeAs($ipImagePath, $ipImageName);
+            $ipImageName = $request->file('ip_img') ? $request->file('ip_img')->getClientOriginalName() : null;
+            $unique = uniqid('', false);
+            $ipImagePath = "images/ip_img/" . time() . "-$unique/";
+            $request->file('ip_img')->move($ipImagePath, $ipImageName);
+            $input['ip_img'] = $ipImagePath . $ipImageName;
         }
 
         $ip = new profilerIp($input);
@@ -80,16 +80,18 @@ class ProfilerIpController extends Controller
     {
         $input = $request->all();
 
-        if ($request->hasFile('ip_img')) {
-            $ipImageName = $request->file('ip_img')->getClientOriginalName();
-            [$width, $height] = getimagesize($request->file('ip_img'));
-            $date = date('Y-m-d');
-            $unique = uniqid('', true);
-            $ipImagePath = "images/ips_images/$date-$ipImageName-$unique-$width-$height";
-            $input['ip_img'] = $request->file('ip_img')->storeAs($ipImagePath, $ipImageName);
+        $ip = new profilerIp($input);
+        if (!$request->hasFile('ip_img')) {
+            if (File::exists($ip['ip_img'])) {
+                File::delete($ip['ip_img']);
+            }
+            $ipImageName = $request->file('ip_img') ? $request->file('ip_img')->getClientOriginalName() : null;
+            $unique = uniqid('', false);
+            $ipImagePath = "images/ip_img/" . time() . "-$unique/";
+            $request->file('ip_img')->move($ipImagePath, $ipImageName);
+            $input['ip_img'] = $ipImagePath . $ipImageName;
         }
 
-        $ip = new profilerIp($input);
         if (!$ip->update($request->all())) {
             throw new Exception('Unexpected Error');
         }
