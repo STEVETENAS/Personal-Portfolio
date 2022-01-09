@@ -28,8 +28,8 @@ class ProfilerInfoResource extends JsonResource
             'place_of_origin' => $this->place_of_origin,
             'number_of_children' => $this->number_of_children,
             'married' => $this->married ? "Yes" : "No",
-            'profiler_image' => $path,
-            'background_image' => $path1,
+            'profiler_image' => $this->profiler_image,
+            'background_image' => $this->background_image,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

@@ -20,7 +20,7 @@ class ProfilerSkillResource extends JsonResource
             'skill_title' => $this->skill_title,
             'skill_level' => $this->skill_level,
             'skill_description' => $this->skill_description,
-            'profiler_info' => ProfilerInfoResource::make($this->profilerInfos),
+            'profiler_info' => ProfilerInfoResource::make($this->profilerInfo),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

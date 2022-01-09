@@ -28,7 +28,7 @@ class ProfilerProject extends Model
         'deleted_at' => 'datetime:U',
     ];
 
-    public function profilerInfos(): BelongsTo
+    public function profilerInfo(): BelongsTo
     {
         return $this->belongsTo(profilerInfo::class);
     }

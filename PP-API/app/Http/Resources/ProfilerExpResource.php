@@ -23,7 +23,7 @@ class ProfilerExpResource extends JsonResource
             'company_website' => $this->company_website,
             'job_start_date' => $this->job_start_date,
             'job_end_date' => $this->job_end_date,
-            'profiler_info' => profilerInfoResource::make($this->profilerInfos),
+            'profiler_info' => profilerInfoResource::make($this->profilerInfo),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

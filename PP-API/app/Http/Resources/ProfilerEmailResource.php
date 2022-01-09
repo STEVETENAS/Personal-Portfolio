@@ -19,7 +19,7 @@ class ProfilerEmailResource extends JsonResource
             'id' => $this->id,
             'profiler_email' => $this->profiler_email,
             'email_description' => $this->email_description,
-            'profiler_info' => profilerInfoResource::make($this->profilerInfos),
+            'profiler_info' => profilerInfoResource::make($this->profilerInfo),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

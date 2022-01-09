@@ -26,7 +26,7 @@ class ProfilerInfoIdRule implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return ProfilerInfo::where('id', $value)->exists();
+        return ProfilerInfo::query()->where('id', $value)->exists();
     }
 
     /**

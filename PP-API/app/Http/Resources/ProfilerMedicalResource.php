@@ -19,7 +19,7 @@ class ProfilerMedicalResource extends JsonResource
             'id' => $this->id,
             'medical_status' => $this->medical_status,
             'medical_description' => $this->medical_description,
-            'profiler_info' => profilerInfoResource::make($this->profilerInfos),
+            'profiler_info' => profilerInfoResource::make($this->profilerInfo),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

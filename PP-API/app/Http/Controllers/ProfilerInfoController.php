@@ -38,23 +38,20 @@ class ProfilerInfoController extends Controller
         $input = $request->all();
 
         if ($request->hasFile('profiler_image')) {
-            $profilerImageName = $request->file('profiler_image')->getClientOriginalName();
-            [$width, $height] = getimagesize($request->file('profiler_image'));
-            $date = date('Y-m-d');
-            $unique = uniqid('', true);
-            $profilerImagePath = "public/images/profiler_images/$date-$unique-$width-$height";
-            $input['profiler_image'] = $request->file('profiler_image')->storeAs($profilerImagePath, $profilerImageName);
+            $profilerImageName = $request->file('profiler_image') ? $request->file('profiler_image')->getClientOriginalName() : null;
+            $unique = uniqid('', false);
+            $profilerImagePath = "images/profiler_images/" . time() . "-$unique/";
+            $request->file('profiler_image')->move($profilerImagePath, $profilerImageName);
+            $input['profiler_image'] = $profilerImagePath . $profilerImageName;
         }
 
         if ($request->hasFile('background_image')) {
-            $bgImageName = $request->file('background_image')->getClientOriginalName();
-            [$width, $height] = getimagesize($request->file('background_image'));
-            $date = date('Y-m-d');
-            $unique = uniqid('', true);
-            $bgImagePath = "public/images/bg_images/$date-$unique-$width-$height";
-            $input['background_image'] = $request->file('background_image')->storeAs($bgImagePath, $bgImageName);
+            $bgImageName = $request->file('background_image') ? $request->file('background_image')->getClientOriginalName() : null;
+            $unique = uniqid('', false);
+            $bgImagePath = "images/bg_images/" . time() . "-$unique/";
+            $request->file('background_image')->move($bgImagePath, $bgImageName);
+            $input['background_image'] = $bgImagePath . $bgImageName;
         }
-
 
         $info = new profilerInfo($input);
         if (!$info->save()) {
@@ -89,22 +86,14 @@ class ProfilerInfoController extends Controller
     public function update(ProfilerInfoRequest $request, int $id): profilerInfoResource
     {
         $input = $request->all();
-        if ($request->hasFile('profiler_image')) {
-            $profilerImageName = $request->file('profiler_image')->getClientOriginalName();
-            [$width, $height] = getimagesize($request->file('profiler_image'));
-            $date = date('Y-m-d');
-            $unique = uniqid('', true);
-            $profilerImagePath = "images/profiler_images/$date-$profilerImageName-$unique-$width-$height";
-            $input['profiler_image'] = $request->file('profiler_image')->storeAs($profilerImagePath, $profilerImageName);
-        }
 
-        if ($request->hasFile('background_image')) {
-            $bgImageName = $request->file('background_image')->getClientOriginalName();
-            [$width, $height] = getimagesize($request->file('background_image'));
+        if ($request->hasFile('ip_img')) {
+            $ipImageName = $request->file('ip_img')->getClientOriginalName();
+            [$width, $height] = getimagesize($request->file('ip_img'));
             $date = date('Y-m-d');
             $unique = uniqid('', true);
-            $bgImagePath = "images/bg_images/$date-$bgImageName-$unique-$width-$height";
-            $input['background_image'] = $request->file('background_image')->storeAs($bgImagePath, $bgImageName);
+            $ipImagePath = "public/images/ips_images/$date-$unique-$width-$height";
+            $input['ip_img'] = $request->file('ip_img')->storeAs($ipImagePath, $ipImageName);
         }
 
         $info = profilerInfo::query()->find($id);

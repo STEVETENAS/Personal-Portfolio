@@ -22,7 +22,7 @@ class ProfilerResidentResource extends JsonResource
             'country_of_residence' => $this->country_of_residence,
             'residence_longitude' => $this->residence_longitude,
             'residence_latitude' => $this->residence_latitude,
-            'profiler_info' => profilerInfoResource::make($this->profilerInfos),
+            'profiler_info' => profilerInfoResource::make($this->profilerInfo),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

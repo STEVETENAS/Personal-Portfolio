@@ -34,8 +34,8 @@ class ProfilerInfoRequest extends FormRequest
                 'date_of_birth' => 'required|sometimes',
                 'number_of_children' => 'required|int|sometimes',
                 'married' => 'required|bool|sometimes',
-                'profiler_image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|sometimes',
-                'background_image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|sometimes',
+                'profiler_image' => 'sometimes|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                'background_image' => 'sometimes|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ];
         }
 

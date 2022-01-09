@@ -19,7 +19,7 @@ class ProfilerLangResource extends JsonResource
             'id' => $this->id,
             'language' => $this->language,
             'language_level' => $this->language_level,
-            'profiler_info' => profilerInfoResource::make($this->profilerInfos),
+            'profiler_info' => profilerInfoResource::make($this->profilerInfo),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
