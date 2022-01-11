@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfilerAcademicRequest;
+use App\Http\Requests\ProfilerContractRequest;
 use App\Http\Resources\profilerContractResource;
 use App\Models\ProfilerContract;
 use Illuminate\Http\JsonResponse;
@@ -29,11 +29,11 @@ class ProfilerContractController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param ProfilerAcademicRequest $request
+     * @param ProfilerContractRequest $request
      * @return profilerContractResource
      * @throws Exception
      */
-    public function store(ProfilerAcademicRequest $request): profilerContractResource
+    public function store(ProfilerContractRequest $request): profilerContractResource
     {
         $contract = new profilerContract($request->all());
         if (!$contract->save()) {
@@ -60,12 +60,12 @@ class ProfilerContractController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param ProfilerAcademicRequest $request
+     * @param ProfilerContractRequest $request
      * @param int $id
      * @return profilerContractResource
      * @throws Exception
      */
-    public function update(ProfilerAcademicRequest $request, int $id): profilerContractResource
+    public function update(ProfilerContractRequest $request, int $id): profilerContractResource
     {
         $contract = profilerContract::query()->find($id);
         if (!$contract->update($request->all())) {

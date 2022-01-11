@@ -31,9 +31,9 @@ class ProfilerAcademicRequest extends FormRequest
                 'diploma_title' => ['required', 'string', 'max:50', 'min:2', 'sometimes',],
                 'profiler_info_id' => ['required', 'int', new ProfilerInfoIDRule(), 'sometimes'],
                 'institution_attended' => ['required', 'string', 'max:50', 'min:2', 'sometimes'],
-                'diploma_description' => ['required', 'string', 'max:300', 'min:5', 'sometimes'],
+                'diploma_description' => ['nullable', 'string', 'max:300', 'min:5', 'sometimes'],
                 'started_on' => ['required', 'date', 'sometimes'],
-                'finished_on' => ['required', 'date', 'after:started_on', 'sometimes'],
+                'finished_on' => ['nullable', 'date', 'after:started_on', 'sometimes'],
             ];
         }
 
@@ -41,9 +41,9 @@ class ProfilerAcademicRequest extends FormRequest
             'diploma_title' => ['required', 'string', 'max:50', 'min:2',],
             'profiler_info_id' => ['required', 'int', new ProfilerInfoIDRule(),],
             'institution_attended' => ['required', 'string', 'max:50', 'min:2',],
-            'diploma_description' => ['required', 'string', 'max:300', 'min:5',],
+            'diploma_description' => ['nullable', 'string', 'max:300', 'min:5',],
             'started_on' => ['required', 'date',],
-            'finished_on' => ['required', 'date', 'after:started_on',],
+            'finished_on' => ['nullable', 'date', 'after:started_on',],
         ];
     }
 }

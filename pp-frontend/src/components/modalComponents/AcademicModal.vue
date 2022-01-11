@@ -45,9 +45,9 @@
         </div>
 
         <div class="form-group">
-          <label>Description:</label>
+          <label>Description: *</label>
           <textarea id="diploma_description" v-model="Academic.diploma_description" name="diploma_description"
-                    placeholder="diploma description"
+                    placeholder="diploma description" required
                     rows="4">
           </textarea>
           <p v-if="!acaError.diploma_description">{{ acaError.diploma_description }}</p>
@@ -61,7 +61,6 @@
 
 <script>
 import profilerService from "@/services/ProfilerService";
-import Academic from "@/components/rightSideComponents/Academic";
 
 export default {
   name: "AcademicModal",
@@ -106,6 +105,24 @@ export default {
     async storeAcademic() {
       this.errors = [];
       await profilerService.apiClient.post('academic', this.Academic)
+        .then((response) => {
+          this.Academic = {
+            diploma_description: null,
+            institution_attended: null,
+            started_on: null,
+            finished_on: null,
+            profiler_infos_id: null,
+          };
+          this.isShowModal()
+          this.$emit('newAcademic', response?.data?.data);
+        }).catch((error) => {
+          console.log(error?.response?.data);
+          this.errors = error?.response?.data;
+        });
+    },
+    async editAcademic() {
+      this.errors = [];
+      await profilerService.apiClient.put('academic/'+this.id+'/', this.Academic)
         .then((response) => {
           this.Academic = {
             diploma_description: null,

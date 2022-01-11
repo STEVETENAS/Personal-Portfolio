@@ -5,33 +5,36 @@ export default {
   name: "Pi_Lang",
   data() {
     return {
+      ip_id: null,
+      lang_id: null,
       ips: [],
       langs: [],
+      isShowIpModal: false,
+      isShowLangModal: false
+    }
+  },
+  methods:{
+    toggleLangModal(id) { this.skill_id = id; this.isShowLangModal = !this.isShowLangModal; },
+    toggleIpModal(id) { this.skill_id = id; this.isShowIpModal = !this.isShowIpModal; },
+    refreshIpComponent() {
+      ProfilerService.getItem('ip', 'profiler_info_id', 1)
+          .then(response => { this.ips = response?.data?.data; })
+          .catch( error => { console.log(error?.response);})
+    },
+    refreshLangComponent() {
+      ProfilerService.getItem('lang', 'profiler_info_id', 1)
+          .then(response => { this.langs = response?.data?.data; })
+          .catch( error => { console.log(error?.response);})
     }
   },
   created() {
-    ProfilerService.getItem('ip', 'profiler_infos_id', 1)
-        .then(
-            response => {
-              this.ips = response.data.data;
-            }
-        )
-        .catch(
-            error => {
-              console.log(error.response);
-            }
-        )
     ProfilerService.getItem('lang', 'profiler_infos_id', 1)
-        .then(
-            response => {
-              this.langs = response.data.data;
-            }
-        )
-        .catch(
-            error => {
-              console.log(error.response);
-            }
-        )
+        .then( response => { this.langs = response.data.data; })
+        .catch( error => { console.log(error.response); })
+
+    ProfilerService.getItem('ip', 'profiler_infos_id', 1)
+        .then( response => { this.ips = response.data.data; })
+        .catch( error => { console.log(error.response); })
   }
 }
 </script>
@@ -39,9 +42,12 @@ export default {
 <template>
   <div id="pi_lang_body" class="w-full space-y-2 xl:flex xl:space-x-2 pb-4">
 
-    <div id="interest" class="w-11/12 rounded-lg bg-gray-50 dark:bg-slate-600 dark:text-gray-50 m-auto p-4">
+    <div id="interest" class="w-full h-[170px] rounded-lg bg-gray-50 dark:bg-slate-600 dark:text-gray-50 m-auto p-4">
       <div class="int_head">
-        <p class="text-2xl">Hobbies</p>
+        <p class="text-2xl">
+          Hobbies
+          <i class="fas fa-plus-circle hover:bg-blue-700 hover:p-2" @click="toggleIpModal(null)"></i>
+        </p>
         <i>Thinks i like to do</i>
       </div>
       <div class="flex justify-between pt-2">
@@ -49,15 +55,18 @@ export default {
           <img v-if="!ip.ip_img" :title="ip.ip_description" alt="test"
                class="w-16" src="../assets/q.png">
           <img v-else
-               :alt="ip.ip_name" :src=" 'http://127.0.0.1:8000'+ip.ip_img"
+               :alt="ip.ip_name" :src=" 'http://127.0.0.1:8000/'+ip.ip_img"
                :title="ip.ip_description" class="w-16">
         </div>
       </div>
     </div>
 
-    <div id="lang" class="w-11/12 rounded-lg xl:w-2/5 bg-gray-50 dark:bg-slate-600 dark:text-gray-50 m-auto p-4">
+    <div id="lang" class="w-full h-[170px] rounded-lg xl:w-2/5 bg-gray-50 dark:bg-slate-600 dark:text-gray-50 m-auto p-4">
       <div class="lang_head">
-        <p class="text-2xl">Languages</p>
+        <p class="text-2xl">
+          Languages
+          <i class="fas fa-plus-circle hover:bg-blue-700 hover:p-2" @click="toggleLangModal(null)"></i>
+        </p>
         <i>Professional languages</i>
       </div>
       <div class="lang_body">
@@ -66,6 +75,7 @@ export default {
           <h3>{{ lang.language }}</h3>
         </div>
       </div>
+
     </div>
 
   </div>

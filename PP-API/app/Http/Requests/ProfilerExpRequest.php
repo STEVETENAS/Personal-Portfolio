@@ -30,21 +30,21 @@ class ProfilerExpRequest extends FormRequest
             return [
                 'job_title' => ['required', 'string', 'max:50', 'min:2', 'sometimes'],
                 'company_name' => ['required', 'string', 'max:50', 'min:2', 'sometimes'],
-                'company_website' => ['string', 'max:200', 'min:2', 'sometimes'],
+                'company_website' => ['nullable','string', 'max:200', 'min:2', 'sometimes'],
                 'job_start_date' => ['required', 'date', 'sometimes'],
-                'job_end_date' => ['required', 'after:job_start_date', 'sometimes'],
+                'job_end_date' => ['nullable', 'after:job_start_date', 'sometimes'],
                 'profiler_info_id' => ['required', 'int', new ProfilerInfoIDRule(), 'sometimes'],
-                'job_description' => ['string', 'max:300', 'min:5', 'sometimes'],
+                'job_description' => ['nullable','string', 'max:300', 'min:5', 'sometimes'],
             ];
         }
         return [
             'job_title' => ['required', 'string', 'max:50', 'min:2',],
             'company_name' => ['required', 'string', 'max:50', 'min:2',],
-            'company_website' => ['string', 'max:200', 'min:2',],
+            'company_website' => ['nullable','string', 'max:200', 'min:2',],
             'job_start_date' => ['required', 'date',],
-            'job_end_date' => ['required', 'after:job_start_date',],
+            'job_end_date' => ['nullable', 'after:job_start_date',],
             'profiler_info_id' => ['required', 'int', new ProfilerInfoIDRule(),],
-            'job_description' => ['string', 'max:300', 'min:5',],
+            'job_description' => ['nullable','string', 'max:300', 'min:5',],
         ];
     }
 }

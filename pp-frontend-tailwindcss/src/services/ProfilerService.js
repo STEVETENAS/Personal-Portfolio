@@ -19,8 +19,5 @@ export default {
     getItem(url, attribute, element) {
         return apiClient.get(url + '?' + attribute + '=' + element);
     },
-    saveResponse(url) {
-        return apiClient.post(url);
-    },
     apiClient
 }
