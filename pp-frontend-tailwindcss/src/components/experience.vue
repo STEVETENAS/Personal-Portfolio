@@ -9,7 +9,7 @@
                 <i>Company Expertise</i>
             </div>
         </div>
-        <i class="fas fa-plus-circle fa-2x hover:bg-blue-700 hover:p-2" @click="toggleModal(null)"></i>
+        <i class="fas fa-plus-circle fa-2x hover:rounded-full hover:bg-gray-500 hover:p-2" @click="toggleModal(null)"></i>
        </div>
     </div>
     <div class="py-4 w-full bg-gray-50 dark:bg-slate-600 max-h-[600px] overflow-y-scroll">

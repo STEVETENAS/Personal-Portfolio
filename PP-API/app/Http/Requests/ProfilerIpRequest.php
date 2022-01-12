@@ -30,15 +30,15 @@ class ProfilerIpRequest extends FormRequest
             return [
                 'ip_name' => 'required|string|max:50|min:2|sometimes',
                 'profiler_info_id' => ['required', 'int', new ProfilerInfoIDRule(), 'sometimes'],
-                'ip_description' => 'required|string|max:300|min:5|sometimes',
-                'ip_img' => ['image|mimes:jpg,png,jpeg,gif,svg', 'max:2048', 'sometimes'],
+                'ip_description' => 'nullable|required|string|max:300|min:5|sometimes',
+                'ip_img' => 'sometimes|nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ];
         }
         return [
             'ip_name' => 'required|string|max:50|min:2',
             'profiler_info_id' => ['required', 'int', new ProfilerInfoIDRule(),],
-            'ip_description' => 'required|string|max:300|min:5',
-            'ip_img' => ['image|mimes:jpg,png,jpeg,gif,svg', 'max:2048',],
+            'ip_description' => 'nullable|required|string|max:300|min:5',
+            'ip_img' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ];
     }
 }

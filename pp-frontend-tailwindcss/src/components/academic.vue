@@ -9,11 +9,11 @@
             <i>Diplomas and professional certificates</i>
           </div>
         </div>
-        <i class="fas fa-plus-circle fa-2x hover:bg-blue-700 hover:p-2 dark:hover:bg-transparent"
+        <i class="fas fa-plus-circle fa-2x hover:rounded-full hover:bg-gray-500 hover:p-2"
            @click="toggleModal(null)"></i>
       </div>
     </div>
-    <div class="py-4 w-full h-[320px] overflow-y-scroll bg-gray-50 dark:bg-slate-600">
+    <div class="py-4 w-full h-[455px] overflow-y-scroll bg-gray-50 dark:bg-slate-600">
       <div v-for="academic in academics" :key="academic.id" class="w-11/12 m-auto text-left p-4 border-b-2 text-lg">
         <div class="flex justify-between items-center">
           <p class="text-xl font-semibold"> {{ academic.diploma_title }} - <b>@{{ academic.institution_attended }} </b></p>

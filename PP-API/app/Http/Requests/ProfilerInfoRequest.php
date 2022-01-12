@@ -34,8 +34,8 @@ class ProfilerInfoRequest extends FormRequest
                 'date_of_birth' => 'required|sometimes',
                 'number_of_children' => 'required|int|sometimes',
                 'married' => 'required|bool|sometimes',
-                'profiler_image' => 'sometimes|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-                'background_image' => 'sometimes|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                'profiler_image' => 'nullable|sometimes|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                'background_image' => 'nullable|sometimes|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ];
         }
 
@@ -46,11 +46,11 @@ class ProfilerInfoRequest extends FormRequest
             'gender' => 'required|string|max:10|min:4',
             'place_of_birth' => 'required|string|max:30|min:2',
             'place_of_origin' => 'required|string|max:30|min:2',
-            'date_of_birth' => 'required',
+            'date_of_birth' => 'required|date',
             'number_of_children' => 'required|int',
             'married' => 'required|bool',
-            'profiler_image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'background_image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'profiler_image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'background_image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ];
     }
 }
