@@ -59,7 +59,7 @@ export default {
                class="w-16" src="../assets/q.png">
           <img v-else
                :alt="ip.ip_name" :src=" 'http://127.0.0.1:8000/'+ip.ip_img" @click="toggleIpModal(ip.id)"
-               :title="ip.ip_description" class="w-16">
+               :title="ip.ip_description" class="w-16 h-16">
         </div>
       </div>
       <teleport to="#app">

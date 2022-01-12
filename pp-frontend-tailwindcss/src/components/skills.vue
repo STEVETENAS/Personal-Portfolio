@@ -16,7 +16,10 @@ export default {
     toggleModal(id) { this.skill_id = id; this.isShowModal = !this.isShowModal; },
     refreshComponent() {
       ProfilerService.getItem('skill', 'profiler_info_id', 1)
-          .then(response => { this.skills = response?.data?.data; })
+          .then(response => {
+            this.skills = response?.data?.data;
+            this.skills.sort(function (a, b){ return b-a })
+          })
           .catch( error => { console.log(error?.response);})
     },
   },

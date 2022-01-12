@@ -52,11 +52,11 @@ export default {
         .then( response => { this.emails = response?.data?.data; })
         .catch( error => { console.log(error.response);})
 
-    ProfilerService.getResponse('project', this.id)
+    ProfilerService.getItem('project','profiler_info_id', this.id)
         .then( response => { this.projects = response?.data?.data;})
         .catch( error => { console.log(error.response);})
 
-    ProfilerService.getResponse('contract', this.id)
+    ProfilerService.getItem('contract','profiler_info_id', this.id)
         .then( response => { this.contracts = response?.data?.data; })
         .catch( error => { console.log(error.response);})
 
