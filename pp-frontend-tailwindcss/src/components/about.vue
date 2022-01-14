@@ -80,72 +80,85 @@ export default {
     },
 
     toggleModal2(id) { this.item = id; this.isShowTelModal = !this.isShowTelModal;},
+    refreshTelComponent() {
+      ProfilerService.getResponse('telephone', 1)
+          .then(response => { this.telephones = response?.data?.data; })
+          .catch( error => { console.log(error?.response);})
+    },
 
     toggleModal3(id) { this.item = id; this.isShowEmailModal = !this.isShowEmailModal;},
+    refreshEmailComponent() {
+      ProfilerService.getResponse('email', 1)
+          .then(response => { this.emails = response?.data?.data; })
+          .catch( error => { console.log(error?.response);})
+    },
+
   }
 }
 </script>
 <template>
-  <div id="about_body" class="bg-blue-600 dark:bg-slate-600 text-white text-xl w-full pt-6 px-2 space-y-4">
-    <div id="item-1" class="flex items-center w-11/12 m-auto">
-      <i class="fas fa-birthday-cake text-4xl pr-8" @click="toggleModal(user.id)"></i>
-      <div class="text-left border-b-2 py-2 w-full">
-        <p>Born on : {{ user.date_of_birth }}</p>
-        <p>Tribe : {{ user.place_of_origin }}</p>
-        <p>Married : {{ user.married ? "Yes" : "No" }} -
-          Health : <span :title="medicals.medical_status"> {{
-              medicals.length ? medicals.length + ' issues' : "RAS"
-            }} </span></p>
+  <div class="h-[500px] bg-blue-600 dark:bg-slate-600 md:overflow-scroll scrollbar-hide">
+    <div id="about_body" class="h-full text-white text-xl w-full pt-4 justify-between">
+      <div id="item-1" @click="toggleModal(user.id)" class="flex items-center w-full px-6 py-2 m-auto hover:bg-blue-700 dark:hover:bg-slate-500">
+        <i class="fas fa-birthday-cake text-4xl pr-8" ></i>
+        <div class="text-left border-b-2 py-2 w-full">
+          <p>Born on : {{ user.date_of_birth }}</p>
+          <p>Tribe : {{ user.place_of_origin }}</p>
+          <p>Married : {{ user.married ? "Yes" : "No" }} -
+            Health : <span :title="medicals.medical_status"> {{
+                medicals.length ? medicals.length + ' issues' : "RAS"
+              }} </span></p>
+        </div>
+        <teleport to="#app">
+          <about-modal v-if="isShowUserModal" :id="item" :isShowModal="toggleModal" @refresh="refreshAboutComponent"/>
+        </teleport>
       </div>
-      <teleport to="#app">
-        <about-modal v-if="isShowUserModal" :id="item" :isShowModal="toggleModal" @refresh="refreshAboutComponent"/>
-      </teleport>
-    </div>
 
-    <div id="item-2" class="flex items-center w-11/12 m-auto">
-      <i class="fas fa-map-marker-alt text-4xl pr-8" @click="toggleModal1(residents.id)"></i>
-      <div class="text-left border-b-2 py-2 w-full">
-        <p>Resident at : {{ residents.place_of_residence }}</p>
-        <p>{{ residents.city_of_residence }} - {{ residents.country_of_residence }}</p>
-        <p>Map:
-          <small>
-            {{ residents.residence_latitude }},
-            {{ residents.residence_longitude }}
-          </small>
-        </p>
+      <div id="item-2" @click="toggleModal1(residents.id)" class="flex items-center w-full px-6 py-2 m-auto hover:bg-blue-700 dark:hover:bg-slate-500">
+        <i class="fas fa-map-marker-alt text-4xl pr-8"></i>
+        <div class="text-left border-b-2 py-2 w-full">
+          <p>Resident at : {{ residents.place_of_residence }}</p>
+          <p>{{ residents.city_of_residence }} - {{ residents.country_of_residence }}</p>
+          <p>Map:
+            <small>
+              {{ residents.residence_latitude }},
+              {{ residents.residence_longitude }}
+            </small>
+          </p>
+        </div>
+        <teleport to="#app">
+          <resident-modal v-if="isShowResidentModal" :id="item" :isShowModal="toggleModal1" @refresh="refreshResidentComponent"/>
+        </teleport>
       </div>
-      <teleport to="#app">
-        <resident-modal v-if="isShowResidentModal" :id="item" :isShowModal="toggleModal1" @refresh="refreshResidentComponent"/>
-      </teleport>
-    </div>
 
-    <div id="item-3" class="flex items-center w-11/12 m-auto">
-      <i class="fas fa-phone-alt text-3xl pr-8" @click="toggleModal2(telephones.id)"></i>
-      <div class="text-left border-b-2 py-2 w-full">
-        <p>{{ telephones.profiler_phone_number }}</p>
-        <small>{{ telephones.phone_number_description }}</small>
+      <div id="item-3" @click="toggleModal2(telephones.id)" class="flex items-center w-full px-6 py-2 m-auto hover:bg-blue-700 dark:hover:bg-slate-500">
+        <i class="fas fa-phone-alt text-3xl pr-8"></i>
+        <div class="text-left border-b-2 py-2 w-full">
+          <p>{{ telephones.profiler_phone_number }}</p>
+          <small>{{ telephones.phone_number_description }}</small>
+        </div>
+        <teleport to="#app">
+          <telephone-modal v-if="isShowTelModal" :id="item" :isShowModal="toggleModal2" @refresh="refreshTelComponent"/>
+        </teleport>
       </div>
-      <teleport to="#app">
-        <telephone-modal v-if="isShowTelModal" :id="item" :isShowModal="toggleModal2"/>
-      </teleport>
-    </div>
 
-    <div id="item-4" class="flex items-center w-11/12 m-auto">
-      <i class="fas fa-envelope text-3xl pr-8" @click="toggleModal3(emails.id)"></i>
-      <div class="text-left border-b-2 py-2 w-full">
-        <p>{{ emails.profiler_email }}</p>
-        <small>{{ emails.email_description }}</small>
+      <div id="item-4" @click="toggleModal3(emails.id)" class="flex items-center w-full px-6 py-2 m-auto hover:bg-blue-700 dark:hover:bg-slate-500">
+        <i class="fas fa-envelope text-3xl pr-8"></i>
+        <div class="text-left border-b-2 py-2 w-full">
+          <p>{{ emails.profiler_email }}</p>
+          <small>{{ emails.email_description }}</small>
+        </div>
+        <teleport to="#app">
+          <email-modal v-if="isShowEmailModal" :id="item" :isShowModal="toggleModal3" @refresh="refreshEmailComponent"/>
+        </teleport>
       </div>
-      <teleport to="#app">
-        <email-modal v-if="isShowEmailModal" :id="item" :isShowModal="toggleModal3"/>
-      </teleport>
-    </div>
 
-    <div id="item-5" class="w-full flex justify-around pt-6 text-sm">
-      <a href="#" class="hover:border-b-4 hover:border-red-400 ">+ {{ projects.length }} PROJECTS</a>
-      <a href="#" class="hover:border-b-4 hover:border-red-400 ">+ {{ contracts.length }} CONTRACTS</a>
-      <a href="#" class="hover:border-b-4 hover:border-red-400 ">+ {{ (new Date().getFullYear() - new Date(exps.job_start_date).getFullYear()) + 1 }} WORK YEARS</a>
-    </div>
+      <div id="item-5" class="w-full flex justify-around pt-6 text-sm">
+        <a href="#" class="hover:border-b-4 hover:border-red-400 ">+ {{ projects.length }} PROJECTS</a>
+        <a href="#" class="hover:border-b-4 hover:border-red-400 ">+ {{ contracts.length }} CONTRACTS</a>
+        <a href="#" class="hover:border-b-4 hover:border-red-400 ">+ {{ (new Date().getFullYear() - new Date(exps.job_start_date).getFullYear()) + 1 }} WORK YEARS</a>
+      </div>
 
+    </div>
   </div>
 </template>

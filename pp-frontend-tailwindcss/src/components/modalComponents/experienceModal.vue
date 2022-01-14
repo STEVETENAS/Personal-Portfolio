@@ -1,11 +1,11 @@
 <template>
   <div class="w-full h-full fixed z-50 bg-blue-900/50 xl:inset-0 modal-zone">
-    <div class="bg-gray-100 w-[fit-content] relative mx-auto my-16 rounded p-4 modal-container">
+    <div class="bg-gray-100 w-4/5 md:w-3/5 relative mx-auto my-16 rounded p-4 modal-container">
       <i class="fas fa-times absolute -top-2 -right-2 hover:bg-red-500 hover:text-white rounded-full bg-gray-200 p-2" title="close" @click="isShowModal"></i>
-      <form @submit.prevent="modalAction" class="space-y-2">
-        <p id="error-signal" hidden class="p-2 bg-red-300 rounded text-red-600 text-center"> An Error occurred! </p>
+      <form @submit.prevent="modalAction" class="space-y-2 overflow-scroll scrollbar-hide">
+        <p id="error-signal" hidden class="w-full p-2 bg-red-300 rounded text-red-600 text-center"> An Error occurred! </p>
         <div class="flex items-center justify-between space-x-2 p-4">
-          <div class="w-1/2">
+          <div class="w-1/2 min-w-[250px]">
             <div class="flex flex-col items-start text-xl space-y-1">
               <label>Job Title: *</label>
               <input id="job_title" v-model="Experience.job_title" autofocus name="job_title"
@@ -32,7 +32,7 @@
 
           </div>
           <div class="w-6 h-full border-amber-900 border-l-4"></div>
-          <div class="w-1/2">
+          <div class="w-1/2 min-w-[250px]">
             <div class="flex flex-col items-start text-xl space-y-1">
               <label>Started on: *</label>
               <input id="job_start_date" v-model="Experience.job_start_date" autofocus name="job_start_date" title="Start date"
@@ -61,7 +61,6 @@
           </div>
         </div>
 
-
         <div class="flex flex-col items-start text-xl space-y-1">
           <label>Description:   </label>
           <textarea id="job_description" v-model="Experience.job_description" name="job_description"
@@ -71,7 +70,7 @@
         </div>
 
         <input v-if="id" title="edit" type="submit" value="Edit" class="w-full bg-blue-700 rounded p-2 text-gray-50">
-        <input v-else title="save" type="submit" value="Save" class="w-full bg-blue-700 rounded p-2 text-gray-50">
+        <input v-else title="save" type="submit" value="Save" class=" w-full bg-blue-700 rounded p-2 text-gray-50">
       </form>
     </div>
   </div>

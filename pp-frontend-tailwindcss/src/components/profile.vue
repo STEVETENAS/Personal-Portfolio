@@ -1,7 +1,7 @@
 <template>
-  <div id="profile_body" class="w-full min-w-[250px] bg-no-repeat bg-center bg-cover"
+  <div id="profile_body" class="xl:h-[320px] w-full min-w-[250px] bg-no-repeat bg-center bg-cover"
         :style="{ 'background-image': 'url('+'http://127.0.0.1:8000/' + user.background_image + ')' }">
-    <div id="profile_bg" class="space-y-8 xl:space-y-12  backdrop-blur-sm bg-blue-400/30 py-8 text-gray-100">
+    <div id="profile_bg" class="w-full h-full space-y-8 xl:space-y-12  backdrop-blur-sm bg-blue-400/30 py-8 text-gray-100">
       
       <div id="searchGroup" class="w-[85%] flex justify-between m-auto items-center min-w-[250px] bg-white dark:bg-slate-600 p-2 rounded text-gray-400 dark:text-gray-200">
         <i class="fas fa-bars hover:text-black"></i>

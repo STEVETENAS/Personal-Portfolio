@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <div class="w-full bg-blue-600 dark:bg-slate-700  text-white">
+    <div class="w-full bg-blue-600 dark:bg-slate-700  text-white rounded">
       <div class="w-11/12 m-auto flex justify-between items-center p-2">
         <div class="flex space-x-4 text-left items-center">
           <i class="fas fa-graduation-cap fa-2x"></i>
@@ -13,12 +13,10 @@
            @click="toggleModal(null)"></i>
       </div>
     </div>
-    <div class="py-4 w-full h-[410px] overflow-y-scroll bg-gray-50 dark:bg-slate-600">
-      <div v-for="academic in academics" :key="academic.id" class="w-11/12 m-auto text-left p-4 border-b-2 text-lg">
+    <div class="py-4 space-y-2 w-full md:h-[450px] md:overflow-y-scroll bg-gray-100 dark:bg-slate-600">
+      <div v-for="academic in academics" :key="academic.id" @click="toggleModal(academic.id)" class="w-12/12 m-auto text-left px-12 py-6 border-b-2 text-lg hover:bg-blue-200 dark:hover:bg-gray-500 ">
         <div class="flex justify-between items-center">
           <p class="text-xl font-semibold"> {{ academic.diploma_title }} - <b>@{{ academic.institution_attended }} </b></p>
-          <i id="edit-btn" :title="'Edit : ' + academic.diploma_title + ' info'" class="fas fa-edit edit_fas hover:text-blue-600"
-             @click="toggleModal(academic.id)"></i>
         </div>
         <p>
           <span class="text-blue-500">{{ academic?.finished_on ? academic.finished_on : "to date" }}

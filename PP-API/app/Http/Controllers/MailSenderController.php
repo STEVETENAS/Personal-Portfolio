@@ -97,7 +97,5 @@ class MailSenderController extends Controller
             return false;
         }
         return true;
-        // Email sending status
-        //    echo $mail?"<h1>Email Sent Successfully!</h1>":"<h1>Email sending failed.</h1>";
     }
 }

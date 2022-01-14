@@ -13,18 +13,18 @@ import Academic from "./components/academic.vue";
   <div id="appContainer" class="dark:dark">
     <div id="container" class="container m-auto py-8">
       <div id="profile">
-        <profile></profile>
+        <profile />
       </div>
       <div id="about">
-        <about></about>
+        <about/>
       </div>
       <div id="skills">
-        <skills></skills>
+        <skills/>
       </div>
       <div id="rightSide" class="space-y-4">
-        <experience></experience>
-        <Pi_lang></Pi_lang>
-        <Academic></Academic>
+        <experience/>
+        <Pi_lang/>
+        <Academic/>
       </div>
     </div>
   </div>
