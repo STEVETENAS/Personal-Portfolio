@@ -11,7 +11,7 @@ class MailSenderController extends Controller
     public function SendMailPDF($email): bool
     {
         $to = $email;
-        $file = 'storage/files/SteveTenadjangCV-pdf.pdf';
+        $file = 'storage/files/MyCV-pdf.pdf';
 
         $htmlContent = '
         <h3>Hope to here from you soon👍.</h3>
@@ -57,7 +57,7 @@ class MailSenderController extends Controller
     public function SendMailIMG($email): bool
     {
         $to = $email;
-        $file = 'storage/files/SteveTenadjangCV-img.jpeg';
+        $file = 'storage/files/MyCV-img.jpeg';
 
 
         $htmlContent = '

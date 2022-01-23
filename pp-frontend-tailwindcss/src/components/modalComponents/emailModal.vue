@@ -9,7 +9,7 @@
           <input id="profiler_email" v-model="Email.profiler_email" autofocus name="profiler_email"
                  placeholder="exampl@me.see" required
                  class="w-full text-center p-2 rounded" type="email">
-          <p v-if="errors.profiler_email" class="text-sm text-red-500 pb-2">{{ errors.profiler_email[0] }}</p>
+          <p v-if="errors['profiler_email']" class="text-sm text-red-500 pb-2">{{ errors.profiler_email[0] }}</p>
         </div>
 
 
@@ -49,7 +49,11 @@ export default {
   },
   data() {
     return {
-      errors: [],
+      errors: {
+        profiler_email: null,
+        email_description: null,
+        profiler_info_id: null,
+      },
       profilers: [],
       Email: {
         profiler_email: null,
@@ -99,7 +103,7 @@ export default {
             this.$emit('refresh', response?.data?.data);
           })
           .catch((error) => {
-            this.errors = error?.response?.data.errors;
+            this.errors = error?.response?.data?.errors;
             document.getElementById('error-signal').style.display = 'block';
           });
     },

@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full fixed z-50 bg-blue-900/50 xl:inset-0 modal-zone">
-    <div class="bg-gray-100 w-[fit-content] relative mx-auto my-16 rounded p-4 modal-container">
+    <div class="bg-gray-100 w-[fit-content] relative mx-auto my-8 md:my-16 rounded p-4 modal-container">
       <i class="fas fa-times absolute -top-2 -right-2 hover:bg-red-500 hover:text-white rounded-full bg-gray-200 p-2" title="close" @click="isShowModal"></i>
       <form @submit.prevent="modalAction" class="space-y-2">
         <p id="error-signal" hidden class="p-2 bg-red-300 rounded text-red-600 text-center"> An Error occurred! </p>

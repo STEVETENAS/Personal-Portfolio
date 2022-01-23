@@ -28,9 +28,9 @@ class ProfilerEmailRequest extends FormRequest
     {
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
             return [
-                'profiler_email' => ['required', 'string', 'max:50', 'min:2', 'unique:profiler_emails' . $this->id, 'sometimes'],
-                'profiler_info_id' => ['required', 'int', new ProfilerInfoIDRule(), 'sometimes'],
-                'email_description' => ['required', 'string', 'max:300', 'min:5', 'sometimes'],
+                'profiler_email' => ['sometimes', 'required', 'string', 'max:50', 'min:2', 'unique:profiler_emails' . $this->id,],
+                'profiler_info_id' => ['sometimes', 'required', 'int', new ProfilerInfoIDRule(),],
+                'email_description' => ['sometimes', 'required', 'string', 'max:300', 'min:5'],
             ];
         }
         return [

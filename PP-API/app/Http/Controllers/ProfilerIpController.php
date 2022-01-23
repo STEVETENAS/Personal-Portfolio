@@ -39,10 +39,9 @@ class ProfilerIpController extends Controller
         $input = $request->all();
 
         if ($request->hasFile('ip_img')) {
-            $ipImageName = $request->file('ip_img') ? $request->file('ip_img')->getClientOriginalName() : null;
-            $unique = uniqid('', false);
-            $ipImagePath = "images/ip_img/" . time() . "-$unique/";
-            $request->file('ip_img')->move($ipImagePath, $ipImageName);
+            $ipImageName = $request->file('ip_img')?->getClientOriginalName();
+            $ipImagePath = "images/ip_img/" . time() . -uniqid('', false) . '/';
+            $request->file('ip_img')?->move($ipImagePath, $ipImageName);
             $input['ip_img'] = $ipImagePath . $ipImageName;
         }
 
@@ -78,7 +77,7 @@ class ProfilerIpController extends Controller
      */
     public function update(ProfilerIpRequest $request, int $id): profilerIpResource
     {
-        $input = $request->all();
+        $input = ProfilerIp::query()->find($id);
 
         $ip = new profilerIp($input);
         if (!$request->hasFile('ip_img')) {
@@ -86,8 +85,7 @@ class ProfilerIpController extends Controller
                 File::delete($ip['ip_img']);
             }
             $ipImageName = $request->file('ip_img') ? $request->file('ip_img')->getClientOriginalName() : null;
-            $unique = uniqid('', false);
-            $ipImagePath = "images/ip_img/" . time() . "-$unique/";
+            $ipImagePath = "images/ip_img/" . time() . -uniqid('', false) . '/';
             $request->file('ip_img')->move($ipImagePath, $ipImageName);
             $input['ip_img'] = $ipImagePath . $ipImageName;
         }
@@ -110,6 +108,9 @@ class ProfilerIpController extends Controller
     public function destroy(int $id): array
     {
         $ip = profilerIp::query()->find($id);
+        if (File::exists($ip['ip_img'])) {
+            File::delete($ip['ip_img']);
+        }
         if (!$ip->delete()) {
             throw new Exception('Unexpected Error');
         }

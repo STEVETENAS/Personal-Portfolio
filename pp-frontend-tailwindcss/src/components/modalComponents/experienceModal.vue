@@ -4,7 +4,7 @@
       <i class="fas fa-times absolute -top-2 -right-2 hover:bg-red-500 hover:text-white rounded-full bg-gray-200 p-2" title="close" @click="isShowModal"></i>
       <form @submit.prevent="modalAction" class="space-y-2 overflow-scroll scrollbar-hide">
         <p id="error-signal" hidden class="w-full p-2 bg-red-300 rounded text-red-600 text-center"> An Error occurred! </p>
-        <div class="flex items-center justify-between space-x-2 p-4">
+        <div class="flex flex-col xl:flex-row items-center justify-between space-x-2 p-4">
           <div class="w-1/2 min-w-[250px]">
             <div class="flex flex-col items-start text-xl space-y-1">
               <label>Job Title: *</label>
@@ -31,8 +31,7 @@
             </div>
 
           </div>
-          <div class="w-6 h-full border-amber-900 border-l-4"></div>
-          <div class="w-1/2 min-w-[250px]">
+          <div class="w-1/2 min-w-[250px] flex flex-col">
             <div class="flex flex-col items-start text-xl space-y-1">
               <label>Started on: *</label>
               <input id="job_start_date" v-model="Experience.job_start_date" autofocus name="job_start_date" title="Start date"
@@ -64,7 +63,7 @@
         <div class="flex flex-col items-start text-xl space-y-1">
           <label>Description:   </label>
           <textarea id="job_description" v-model="Experience.job_description" name="job_description"
-                    placeholder="Job Description" class="w-full text-center p-1 rounded " rows="4">
+                    placeholder="Job Description" class="w-full h-28 text-center p-1 rounded ">
           </textarea>
           <p v-if="errors.job_description" class="text-sm text-red-500 pb-2">{{ errors.job_description[0] }}</p>
         </div>

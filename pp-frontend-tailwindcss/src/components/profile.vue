@@ -47,7 +47,16 @@
                 <span>IMG</span>
               </label>
             </div>
-            <button type="submit" id="email-btn" class="bg-blue-600 rounded text-xl text-white p-2 hover:bg-blue-800">Send <i class="fas fa-paper-plane"></i></button>
+            <button type="submit" id="email-btn" class="bg-blue-600 rounded text-xl text-white p-2 hover:bg-blue-800">
+              <div v-if="loading" class="flex items-center space-x-2">
+                <i class="fas fa-paper-plane"></i>
+                <p>Send</p>
+              </div>
+              <div v-else class="flex items-center space-x-2">
+                <i class="fa fa-spinner fa-spin"></i>
+                <p>Sending...</p>
+              </div>
+            </button>
           </form>
         </div>
       </div>
@@ -63,7 +72,8 @@ export default {
   data() {
     return {
       user: [],
-      isShowModal:false
+      isShowModal:false,
+      loading: true,
     }
   },
   created() {
@@ -81,12 +91,11 @@ export default {
     cleared() {
       document.getElementById("searchBar").value = '';
     },
-
     vueModal(){
       this.isShowModal = ! this.isShowModal;
     },
-
     sendMail(){
+      this.loading = false;
       let email = document.getElementById('email').value;
 
       if (document.getElementById('img').checked){
@@ -94,14 +103,14 @@ export default {
             .then(response => {
                   response.data ? alert('mail sent to' + email): alert('mail not sent');
                   this.vueModal();})
-            .catch(error => { console.log(error.response); });
+            .catch(error => { console.log(error.response); this.loading = false;});
       }
       else {
         ProfilerService.getResponse('sendMailPDF', email)
             .then(response => {
               response.data ? alert('mail sent to ' + email): alert('mail not sent');
               this.vueModal();})
-            .catch(error => { console.log(error.response); });
+            .catch(error => { console.log(error.response); this.loading = false;});
       }
 
     }

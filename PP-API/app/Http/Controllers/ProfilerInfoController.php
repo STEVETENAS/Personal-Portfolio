@@ -11,6 +11,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\File;
 use JetBrains\PhpStorm\ArrayShape;
 use Mosquitto\Exception;
+use function public_path;
 
 class ProfilerInfoController extends Controller
 {
@@ -39,18 +40,16 @@ class ProfilerInfoController extends Controller
         $input = $request->all();
 
         if ($request->hasFile('profiler_image')) {
-            $profilerImageName = $request->file('profiler_image') ? $request->file('profiler_image')->getClientOriginalName() : null;
-            $unique = uniqid('', false);
-            $profilerImagePath = "images/profiler_images/" . time() . "-$unique/";
-            $request->file('profiler_image')->move($profilerImagePath, $profilerImageName);
+            $profilerImageName = $request->file('profiler_image')?->getClientOriginalName();
+            $profilerImagePath = "images/profiler_images/" . time() . -uniqid('', false) . '/';
+            $request->file('profiler_image')?->move(public_path($profilerImagePath), $profilerImageName);
             $input['profiler_image'] = $profilerImagePath . $profilerImageName;
         }
 
         if ($request->hasFile('background_image')) {
-            $bgImageName = $request->file('background_image') ? $request->file('background_image')->getClientOriginalName() : null;
-            $unique = uniqid('', false);
-            $bgImagePath = "images/bg_images/" . time() . "-$unique/";
-            $request->file('background_image')->move($bgImagePath, $bgImageName);
+            $bgImageName = $request->file('background_image')?->getClientOriginalName();
+            $bgImagePath = "images/bg_images/" . time() . -uniqid('', false) . '/';
+            $request->file('background_image')?->move(public_path($bgImagePath), $bgImageName);
             $input['background_image'] = $bgImagePath . $bgImageName;
         }
 
@@ -129,7 +128,13 @@ class ProfilerInfoController extends Controller
     public function destroy(int $id): array
     {
         $info = profilerInfo::query()->find($id);
-        if ($info->delete()) {
+        if (File::exists($info['profiler_images'])) {
+            File::delete($info['profiler_images']);
+        }
+        if (File::exists($info['profiler_images'])) {
+            File::delete($info['background_image']);
+        }
+        if (!$info->delete()) {
             throw new Exception('Unexpected Error');
         }
         return ['Deleted-data' => $info];

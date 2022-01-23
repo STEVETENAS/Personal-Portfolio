@@ -59,7 +59,7 @@ export default {
                class="w-16 h-16 hover:bg-gray-500 hover:p-2" src="../assets/q.png">
           <img v-else
                :alt="ip.ip_name" :src=" 'http://127.0.0.1:8000/'+ip.ip_img" @click="toggleIpModal(ip.id)"
-               :title="ip.ip_description" class="w-16 h-16 hover:bg-blue-200 dark:hover:bg-gray-500 hover:p-2 hover:rounded">
+               :title="ip.ip_description" class="w-12 h-12 md:w-16 md:h-16 hover:bg-blue-200 dark:hover:bg-gray-500 hover:p-2 hover:rounded">
         </div>
       </div>
       <teleport to="#app">
