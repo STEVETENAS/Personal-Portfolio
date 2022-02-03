@@ -57,7 +57,7 @@ class MailSenderController extends Controller
     public function SendMailIMG($email): bool
     {
         $to = $email;
-        $file = 'storage/files/MyCV-img.jpeg';
+        $file = 'storage/files/SteveTenadjangCV-img.jpeg';
 
 
         $htmlContent = '

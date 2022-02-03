@@ -10,22 +10,20 @@ import Academic from "./components/academic.vue";
 </script>
 
 <template>
-  <div id="appContainer" class="dark:dark">
-    <div id="container" class="container m-auto py-8">
-      <div id="profile">
-        <profile />
-      </div>
-      <div id="about">
-        <about/>
-      </div>
-      <div id="skills">
-        <skills/>
-      </div>
-      <div id="rightSide" class="space-y-4">
-        <experience/>
-        <Pi_lang/>
-        <Academic/>
-      </div>
+  <div id="container" class="w-full h-full dark:dark container m-auto py-12">
+    <div id="profile">
+      <profile />
+    </div>
+    <div id="about">
+      <about/>
+    </div>
+    <div id="skills">
+      <skills/>
+    </div>
+    <div id="rightSide" class="space-y-4">
+      <experience/>
+      <Pi_lang/>
+      <Academic/>
     </div>
   </div>
 </template>
@@ -36,11 +34,15 @@ import Academic from "./components/academic.vue";
   margin: 0;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+}
+body{
+  height: 100%;
+  width: 100%;
+  background-color: gray;
 }
 
 #container{

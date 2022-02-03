@@ -13,7 +13,7 @@
            @click="toggleModal(null)"></i>
       </div>
     </div>
-    <div class="py-4 space-y-2 w-full md:h-[450px] md:overflow-y-scroll bg-gray-100 dark:bg-slate-600">
+    <div class="py-4 space-y-2 w-full md:min-h-[400px] md:overflow-y-scroll bg-gray-100 dark:bg-slate-600">
       <div v-for="academic in academics" :key="academic.id" @click="toggleModal(academic.id)" class="w-12/12 m-auto text-left px-12 py-6 border-b-2 text-lg hover:bg-blue-200 dark:hover:bg-gray-500 ">
         <div class="flex justify-between items-center">
           <p class="text-xl font-semibold"> {{ academic.diploma_title }} - <b>@{{ academic.institution_attended }} </b></p>

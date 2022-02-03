@@ -97,7 +97,7 @@ export default {
 }
 </script>
 <template>
-  <div class="h-[500px] bg-blue-600 dark:bg-slate-600 md:overflow-scroll scrollbar-hide">
+  <div class="min-h-[400px] bg-blue-600 dark:bg-slate-600 md:overflow-scroll scrollbar-hide">
     <div id="about_body" class="h-full text-white text-xl w-full pt-4 justify-between">
       <div id="item-1" @click="toggleModal(user.id)" class="flex items-center w-full px-6 py-2 m-auto hover:bg-blue-700 dark:hover:bg-slate-500">
         <i class="fas fa-birthday-cake text-4xl pr-8" ></i>

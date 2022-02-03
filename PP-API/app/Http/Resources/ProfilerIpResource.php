@@ -15,12 +15,11 @@ class ProfilerIpResource extends JsonResource
      */
     public function toArray($request): array
     {
-        $path = str_replace('public','/storage',$this->ip_img);
         return [
             'id' => $this->id,
             'ip_name' => $this->ip_name,
             'ip_description' => $this->ip_description,
-            'ip_img' => $path,
+            'ip_img' => env('APP_URL') . $this->ip_img,
             'profiler_info' => profilerInfoResource::make($this->profilerInfo),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

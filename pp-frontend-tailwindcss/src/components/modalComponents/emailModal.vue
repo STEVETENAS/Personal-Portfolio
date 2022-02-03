@@ -9,18 +9,18 @@
           <input id="profiler_email" v-model="Email.profiler_email" autofocus name="profiler_email"
                  placeholder="exampl@me.see" required
                  class="w-full text-center p-2 rounded" type="email">
-          <p v-if="errors['profiler_email']" class="text-sm text-red-500 pb-2">{{ errors.profiler_email[0] }}</p>
+<!--          <p v-if="errors.profiler_email" class="text-sm text-red-500 pb-2">{{ errors.profiler_email[0] }}</p>-->
         </div>
 
 
         <div class="flex flex-col items-start text-xl space-y-1">
           <label>Profiler: *</label>
-          <select v-model="Email.profiler_info_id" class="w-full text-center p-2 rounded" name="profiler_info_id" id="profiler_info_id">
+          <select v-model="Email.profiler_info_id" class="text-center p-2 rounded" name="profiler_info_id" id="profiler_info_id">
             <option v-for="profiler in profilers" :key="profiler.id" :value="profiler.id">
               {{ profiler['first_name'] }}
             </option>
           </select>
-          <p v-if="errors.profiler_info_id" class="text-sm text-red-500 pb-2">{{ errors.profiler_info_id[0] }}</p>
+<!--          <p v-if="errors.profiler_info_id" class="text-sm text-red-500 pb-2">{{ errors.profiler_info_id[0] }}</p>-->
         </div>
 
         <div class="flex flex-col items-start text-xl space-y-1">
@@ -28,7 +28,7 @@
           <textarea id="email_description" v-model="Email.email_description" name="email_description" required
                     placeholder="Email description" class="w-full text-center p-2 rounded" rows="4">
           </textarea>
-          <p v-if="errors.email_description" class="text-sm text-red-500 pb-2">{{ errors.email_description[0] }}</p>
+<!--          <p v-if="errors.email_description" class="text-sm text-red-500 pb-2">{{ errors.email_description[0] }}</p>-->
         </div>
 
         <input v-if="id" title="edit" type="submit" value="Edit" class="w-full bg-blue-700 rounded p-2 text-gray-50">
@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     async modalAction() {
-      this.errors = [];
+      // this.errors = [];
       if (this.id){
         await profilerService.apiClient.put('email/'+this.id+'/', this.Email)
             .then((response) => {

@@ -12,7 +12,7 @@
         <i class="fas fa-plus-circle fa-2x hover:rounded-full hover:bg-gray-500 hover:p-2" @click="toggleModal(null)"></i>
        </div>
     </div>
-    <div class="py-2 w-full bg-gray-100 dark:bg-slate-600 md:max-h-[500px] md:overflow-scroll scrollbar-hide">
+    <div class="py-2 w-full bg-gray-100 dark:bg-slate-600 md:h-[450px] md:overflow-scroll scrollbar-hide">
       <div v-for="exp in exps" :key="exp.id" @click="toggleModal(exp.id)" class="w-full m-auto text-left px-12 py-4 border-b-2 border-gray-300 dark:border-b-red-50 text-lg hover:bg-blue-200 dark:hover:bg-slate-500">
         <div class="flex justify-between items-center">
           <p class="text-xl font-semibold"> {{ exp.job_title }} - <b>@{{ exp.company_name }}</b></p>
