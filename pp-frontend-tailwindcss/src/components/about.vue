@@ -104,7 +104,7 @@ export default {
         <div class="text-left border-b-2 py-2 w-full">
           <p>Born on : {{ user.date_of_birth }}</p>
           <p>Tribe : {{ user.place_of_origin }}</p>
-          <p>Married : {{ user.married ? "Yes" : "No" }} -
+          <p>Married : {{ user.married ? "No" : "Yes" }} -
             Health : <span :title="medicals.medical_status"> {{
                 medicals.length ? medicals.length + ' issues' : "RAS"
               }} </span></p>

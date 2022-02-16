@@ -42,7 +42,6 @@ import Academic from "./components/academic.vue";
 body{
   height: 100%;
   width: 100%;
-  background-color: gray;
 }
 
 #container{

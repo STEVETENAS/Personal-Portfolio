@@ -1,6 +1,6 @@
 <template>
   <div id="profile_body" class="md:h-[320px] w-full min-w-[250px] bg-no-repeat bg-center bg-cover"
-        :style="{ 'background-image': 'url('+'http://127.0.0.1:8000/' + user.background_image + ')' }">
+        :style="{ 'background-image': 'url(' + user.background_image + ')' }">
     <div id="profile_bg" class="w-full h-full space-y-8 xl:space-y-12  backdrop-blur-sm bg-blue-400/30 py-8 text-gray-100">
       
       <div id="searchGroup" class="w-[85%] flex justify-between m-auto items-center min-w-[250px] bg-white dark:bg-slate-600 p-2 rounded text-gray-400 dark:text-gray-200">
@@ -14,7 +14,7 @@
       </div>
 
       <div class="w-[85%] m-auto xl:flex space-y-4 items-center">
-        <img :src="'http://127.0.0.1:8000/'+user.profiler_image" alt="TENAS image"
+        <img :src="user.profiler_image" alt="TENAS image"
           class="rounded-full w-2/5 xl:w-1/3 m-auto border-4">
         <div class="justify-start">
           <p class="text-2xl font-bold">{{ user.first_name }} {{ user.last_name }}</p>

@@ -32,7 +32,7 @@ export default {
 </script>
 
 <template>
-  <div id="skills_body" class="md:h-[500px] py-8 bg-gray-100 dark:bg-slate-700 overflow-scroll scrollbar-hide">
+  <div id="skills_body" class="md:h-[600px] py-8 bg-gray-100 dark:bg-slate-700 overflow-scroll scrollbar-hide">
     <div class="relative">
       <i class="absolute right-20 -top-6 fas fa-plus-circle fa-2x hover:rounded-full hover:bg-gray-500 hover:p-2"
          @click="toggleModal(null)"></i>
